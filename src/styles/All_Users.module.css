@@ -1,0 +1,166 @@
+
+#wrapper{
+    width: 100%;
+    min-height: calc(100vh - 50px);
+    position: relative;
+    overflow-x: hidden;
+    background-color: white;
+
+}
+
+#headerConatiner{
+    width: 100%;
+    height: 10%;
+    padding: 0 10px;
+    background-color: white;
+}
+
+#header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#header h2{
+    color: rgb(63, 106, 216);
+    font-size: 1.3rem;
+}
+#buttons{
+    width: 18%;
+    display: flex;
+    justify-content: space-between;
+}
+#buttons button{
+    padding: 0px 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#buttons button span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#BtnIcon{
+    font-weight: 900;
+}
+
+#seachFormContainer form{
+    margin-top: 1rem;
+    display: flex;
+    align-items: end; 
+    gap: 1rem;
+}
+#seachFormContainer label{
+    font-size: 0.7rem;
+}
+#seachFormContainer input{
+    display: flex;
+    outline: none;
+    padding: 1px;
+    height: 20px;
+}
+#seachFormContainer form>input{
+    color: rgb(63, 106, 216);
+    background-color: rgb(210, 238, 255);
+    font-size: 0.75rem;
+    border-radius: 5px;
+    outline: none;
+    padding: 3px 4px;
+    font-weight: 600;
+    border: 1px solid rgb(63, 106, 216);
+    cursor: pointer;
+}
+
+#seachFormContainer p{
+    color: rgb(63, 106, 216);
+    font-size: 0.8rem;
+    font-weight: 600;
+    background-color: rgb(210, 238, 255);
+    border: 1px solid rgb(63, 106, 216);
+    border-radius: 5px;
+    padding: 2px 4px;
+    cursor: pointer;
+}
+#seachFormContainer button{
+    color: rgb(63, 106, 216);
+    font-size: 0.8rem;
+    font-weight: 600;
+    background-color: rgb(210, 238, 255);
+    border: 1px solid rgb(63, 106, 216);
+    border-radius: 5px;
+    padding: 3px 5px;
+    cursor: pointer;
+}
+
+
+
+#userDataContainer{
+    width: 1000px;
+    height: 85%;
+    overflow-x: auto;
+
+
+}
+
+
+
+#userDataTable{
+    /* width: max-content; */
+    width: 100%;
+    min-width: max-content;
+    padding: 0;
+    background-color: white;
+    border-collapse: collapse;
+
+    overflow-x: scroll;
+
+    font-size: 0.8rem;
+}
+
+
+#userDataHeader{
+    background-color: white;
+    position: sticky;
+    top: 0px;
+}
+
+#userDataHeader th{
+    padding: 0px 0.5rem;
+}
+
+
+#showDataNumber{
+    height: 4%;
+    text-align: end;
+    width: 100%;
+    background-color: white;
+    color: rgb(63, 106, 216);
+    font-weight: 600;
+    padding-right: 20px;
+
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+
+#userDataBody td{
+    padding: 0.5rem 1rem;
+}
+
+#userDataBody tr:hover{
+    background-color: rgb(210, 238, 255);
+    cursor: pointer;
+}
+
+
+
+#AddNewUserForm{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    transition: 1s;
+} 
