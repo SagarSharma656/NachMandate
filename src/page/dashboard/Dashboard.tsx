@@ -8,8 +8,8 @@ import {
   Autocomplete,
   TextField,
 } from "@mui/material";
-import Analysis from "../../components/Analysis";
-import MandateSearch from "../../components/MandateSearch";
+import AnalysisTab from "../../components/AnalysisTab";
+import MandateSearchTab from "../../components/MandateSearchTab";
 import SearchIcon from '@mui/icons-material/Search';
 import { Year } from "../../utils/types";
 
@@ -111,7 +111,7 @@ function Dashboard() {
   }
 
   return (
-    <Container sx={{paddingTop: 1, maxWidth: '100% !important'}}>
+    <Container sx={{paddingTop: 1}}>
       <Grid container justifyContent="space-between">
         <Grid item justifyContent="space-between">
           <Stack direction="row" spacing={1}>
@@ -194,7 +194,7 @@ function Dashboard() {
           margin: 0,
         }}
       >
-        {tab === "Analysis" ? <Analysis /> : <MandateSearch />}
+        {tab === "Analysis" ? <AnalysisTab /> : <MandateSearchTab />}
       </Grid>
     </Container>
   );

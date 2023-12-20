@@ -91,7 +91,7 @@ import { useState } from 'react';
   ] 
   
 
-function Analysis() {
+function AnalysisTab() {
 
     // const monthsArr: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
   
@@ -357,4 +357,4 @@ function Analysis() {
   )
 }
 
-export default Analysis
+export default AnalysisTab

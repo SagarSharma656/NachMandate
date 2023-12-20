@@ -310,6 +310,7 @@ function NACHMandate() {
 
   function handleSubmit(event: any) {
     event.preventDefault();
+    console.log(formData)
 
   }
 

@@ -10,12 +10,14 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { Order } from '../utils/types';
-import { Data, EnhancedTableHead, EnhancedTableToolbar, rows } from './MandateSearchTableHead';
-import { getComparator, stableSort } from '../utils/tableFunction';
+import { Data } from '../utils/types'
+import { EnhancedTableHead, EnhancedTableToolbar, rows } from './MandateSearchTableHead';
+import { getComparator, stableSort } from '../utils/tablefunction';
+import { Box } from '@mui/material';
 
-export default function EnhancedTable() {
+export default function MandateSearchTab() {
   const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<keyof Data>('protein');
+  const [orderBy, setOrderBy] = React.useState<keyof Data>('srno');
   const [selected, setSelected] = React.useState<readonly number[]>([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
@@ -32,7 +34,7 @@ export default function EnhancedTable() {
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelected = rows.map((n) => n.id);
+      const newSelected = rows.map((n) => n.mandateId);
       setSelected(newSelected);
       return;
     }
@@ -87,8 +89,8 @@ export default function EnhancedTable() {
   );
 
   return (
-    <React.Fragment>
-      <Paper sx={{maxWidth:750}} >
+    <Box sx={{width: '100%'}}>
+      <Paper sx={{width: '100%', mb: 2 }}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
           <Table
@@ -105,13 +107,13 @@ export default function EnhancedTable() {
             />
             <TableBody>
               {visibleRows.map((row, index) => {
-                const isItemSelected = isSelected(row.id);
+                const isItemSelected = isSelected(row.mandateId);
                 const labelId = `enhanced-table-checkbox-${index}`;
 
                 return (
                   <TableRow
                     hover
-                    onClick={(event) => handleClick(event, row.id)}
+                    onClick={(event) => handleClick(event, row.mandateId)}
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
@@ -135,12 +137,32 @@ export default function EnhancedTable() {
                       padding="none"
 
                     >
-                      {row.name}
+                      {row.srno}
                     </TableCell>
-                    <TableCell align="right">{row.status}</TableCell>
-                    <TableCell align="right">{row.fat}</TableCell>
-                    <TableCell align="right">{row.carbs}</TableCell>
-                    <TableCell align="right">{row.protein}</TableCell>
+                    <TableCell align="right">{row.mandateStatus}</TableCell>
+                    <TableCell align="right">{row.UMRN}</TableCell>
+                    <TableCell align="right">{row.mandateId}</TableCell>
+                    <TableCell align="right">{row.reference1}</TableCell>
+                    <TableCell align="right">{row.customerName}</TableCell>
+                    <TableCell align="right">{row.customerAccountNo}</TableCell>
+                    <TableCell align="right">{row.amount}</TableCell>
+                    <TableCell align="right">{row.amountInWord}</TableCell>
+                    <TableCell align="right">{row.IFSC_MICR}</TableCell>
+                    <TableCell align="right">{row.customerBank}</TableCell>
+                    <TableCell align="right">{row.sponsorBank}</TableCell>
+                    <TableCell align="right">{row.dateOnMandate}</TableCell>
+                    <TableCell align="right">{row.formDate}</TableCell>
+                    <TableCell align="right">{row.debitTo}</TableCell>
+                    <TableCell align="right">{row.frequency}</TableCell>
+                    <TableCell align="right">{row.mandateType}</TableCell>
+                    <TableCell align="right">{row.rejectResion}</TableCell>
+                    <TableCell align="right">{row.createOn}</TableCell>
+                    <TableCell align="right">{row.createBy}</TableCell>
+                    <TableCell align="right">{row.lastActivityOn}</TableCell>
+                    <TableCell align="right">{row.product}</TableCell>
+                    <TableCell align="right">{row.branch}</TableCell>
+                    <TableCell align="right">{row.categoryCode}</TableCell>
+                    <TableCell align="right">{row.utilityCode}</TableCell>
                   </TableRow>
                 );
               })}
@@ -171,6 +193,6 @@ export default function EnhancedTable() {
       />
       </Paper>
 
-  </React.Fragment>
+  </Box>
   );
 }
