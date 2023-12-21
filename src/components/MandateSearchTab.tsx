@@ -10,14 +10,14 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { Order } from '../utils/types';
-import { Data } from '../utils/types'
+import { MandateData } from '../utils/types'
 import { EnhancedTableHead, EnhancedTableToolbar, rows } from './MandateSearchTableHead';
 import { getComparator, stableSort } from '../utils/tablefunction';
 import { Box } from '@mui/material';
 
 export default function MandateSearchTab() {
   const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<keyof Data>('srno');
+  const [orderBy, setOrderBy] = React.useState<keyof MandateData>('srno');
   const [selected, setSelected] = React.useState<readonly number[]>([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
@@ -25,7 +25,7 @@ export default function MandateSearchTab() {
 
   const handleRequestSort = (
     _event: React.MouseEvent<unknown>,
-    property: keyof Data,
+    property: keyof MandateData,
   ) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -117,7 +117,7 @@ export default function MandateSearchTab() {
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
-                    key={row.id}
+                    key={row.mandateId}
                     selected={isItemSelected}
                     sx={{ cursor: 'pointer' }}
                   >

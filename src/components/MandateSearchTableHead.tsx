@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
-import { Data, HeadCell, Order } from '../utils/types';
+import { MandateData, MandateHeadCell, Order } from '../utils/types';
 
 
 
@@ -44,7 +44,7 @@ import { Data, HeadCell, Order } from '../utils/types';
     branch: string,
     categoryCode: string,
     utilityCode: string,
-  ): Data {
+  ): MandateData {
     return {
 
     srno,
@@ -87,7 +87,7 @@ import { Data, HeadCell, Order } from '../utils/types';
   
 
   
-  const headCells: readonly HeadCell[] = [
+  const headCells: readonly MandateHeadCell[] = [
     {
       id: 'srno',
       numeric: false,
@@ -242,7 +242,7 @@ import { Data, HeadCell, Order } from '../utils/types';
   
   interface EnhancedTableProps {
     numSelected: number;
-    onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Data) => void;
+    onRequestSort: (event: React.MouseEvent<unknown>, property: keyof MandateData) => void;
     onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
     order: Order;
     orderBy: string;
@@ -253,7 +253,7 @@ import { Data, HeadCell, Order } from '../utils/types';
     const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
       props;
     const createSortHandler =
-      (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
+      (property: keyof MandateData) => (event: React.MouseEvent<unknown>) => {
         onRequestSort(event, property);
       };
   

@@ -9,7 +9,7 @@ export interface Year {
  export type Order = 'asc' | 'desc';
 
 
- export interface Data {
+ export interface MandateData {
   srno : number;
   mandateStatus: string;
   UMRN: number;
@@ -38,9 +38,35 @@ export interface Year {
 }
 
 
-export interface HeadCell {
+export interface MandateHeadCell {
   disablePadding: boolean;
-  id: keyof Data;
+  id: keyof MandateData;
+  label: string;
+  numeric: boolean;
+}
+
+export interface UserData {
+  srno: number;
+  userType: string;
+  userName: string;
+  emailId: string;
+  phoneNo: number;
+  productName: string;
+  branchName: string;
+  lastLogin: string;
+  createdBy: string;
+  createdOn: string;
+  updatedBy: string;
+  updatedOn: string;
+  vendorUser: string;
+  accountBlocked: string;
+  status: string;
+  mobileApp: string;
+}
+
+export interface UserHeadCell {
+  disablePadding: boolean;
+  id: keyof UserData;
   label: string;
   numeric: boolean;
 }
