@@ -7,11 +7,19 @@ import {
   Stack,
   Autocomplete,
   TextField,
+  Box,
+  Typography,
+  useTheme,
+  AppBar,
+  Tabs,
+  Tab,
 } from "@mui/material";
-import AnalysisTab from "../../components/AnalysisTab";
-import MandateSearchTab from "../../components/MandateSearchTab";
+// import AnalysisTab from "../../components/AnalysisTab";
+// import MandateSearchTab from "../../components/MandateSearchTab";
 import SearchIcon from '@mui/icons-material/Search';
 import { Year } from "../../utils/types";
+import React from "react";
+import SwipeableViews from 'react-swipeableViews-views'
 
 const btnStyle = {
   fontSize: "10px",
@@ -19,18 +27,6 @@ const btnStyle = {
   py: "2px",
   outline: "none",
   height: "0",
-};
-
-const bigBtnStyle = {
-  width: "35%",
-  fontSize: "12px",
-  textAlign: "center",
-  backgroundColor: "rgb(205, 205, 205)",
-  color: "black",
-  marginRight: "5px",
-  border: "none",
-  py: "3px",
-  fontWeight: 600,
 };
 
 
@@ -97,6 +93,41 @@ const years: Year[] = [
   }
 ] 
 
+interface TabPanelProps {
+  children?: React.ReactNode;
+  dir?: string;
+  index: number;
+  value: number;
+}
+
+function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`full-width-tabpanel-${index}`}
+      aria-labelledby={`full-width-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+function a11yProps(index: number) {
+  return {
+    id: `full-width-tab-${index}`,
+    'aria-controls': `full-width-tabpanel-${index}`,
+  };
+}
+
+
 
 
 function Dashboard() {
@@ -104,11 +135,18 @@ function Dashboard() {
 
   const [yearValue, setYearValue] = useState <Year | null>();
 
-  const [tab, setTab] = useState<string>("Analysis");
+  const theme = useTheme();
+  const [value, setValue] = React.useState(0);
 
-  function handleClickOnTabBtn(tabName: string) {
-    setTab(tabName);
-  }
+  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+
+  const handleChangeIndex = (index: number) => {
+    setValue(index);
+  };
+
+ 
 
   return (
     <Container sx={{paddingTop: 1}}>
@@ -159,34 +197,25 @@ function Dashboard() {
           <span>Search</span>
         </Button>
       </Grid>
-      <Grid container>
-        <Stack width="100%" direction="row">
-          <Button
-            sx={bigBtnStyle}
-            className={tab === "Analysis" ? "activeBtn" : ""}
-            onClick={() => {
-              handleClickOnTabBtn("Analysis");
-            }}
-          >
-            ANALYSIS
-          </Button>
+    
+      <Box sx={{ width: '100%' }}>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        textColor="secondary"
+        indicatorColor="secondary"
+        aria-label="secondary tabs example"
+      >
+        <Tab value="one" label="Item One" />
+        <Tab value="two" label="Item Two" />
+        <Tab value="three" label="Item Three" />
+      </Tabs>
+    </Box>
 
-          <Button
-            sx={bigBtnStyle}
-            className={tab === "Mandate Search" ? "activeBtn" : ""}
-            onClick={() => {
-              handleClickOnTabBtn("Mandate Search");
-            }}
-          >
-            MANDATE SEARCH
-          </Button>
-        </Stack>
-      </Grid>
-
-      <Grid
+      {/* <Grid
         container
         sx={{
-          width: "100%",
+          // width: "100%",
           minHeight: "450px",
           border: "0.1px solid lightgray",
           padding: 1,
@@ -195,7 +224,7 @@ function Dashboard() {
         }}
       >
         {tab === "Analysis" ? <AnalysisTab /> : <MandateSearchTab />}
-      </Grid>
+      </Grid> */}
     </Container>
   );
 }

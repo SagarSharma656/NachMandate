@@ -99,12 +99,12 @@ function AnalysisTab() {
 
   return (
             <Box>
-                <Grid sx={{width: '100%', border: '0.1px solid lightgray'}}>
+                <Grid sx={{ border: '0.1px solid lightgray'}}>
                     
-                    <Grid sx={{width: '100%', borderBottom: '0.1px solid lightgray'}}>
+                    <Grid sx={{ borderBottom: '0.1px solid lightgray'}}>
                       <Stack>
-                        <Grid sx={{width: '100%'}}>
-                          <Stack direction='row' sx={{width: '100%'}} display='flex' justifyContent='space-between' alignItems='center' paddingX={1}>
+                        <Grid>
+                          <Stack direction='row' display='flex' justifyContent='space-between' alignItems='center' paddingX={1}>
                             <Typography sx={{fontSize: '12px'}}>Total Mandates: -</Typography>
                             <FormGroup>
                               <Autocomplete
@@ -128,7 +128,7 @@ function AnalysisTab() {
           
                     </Grid>
           
-                    <Grid container sx={{width: '100%', px:1, py: 2}}>
+                    <Grid container sx={{ px:1, py: 2}}>
                       <Stack direction='row' flexWrap='wrap' gap={0.5}>
           
                         <Card sx={CardStyle}>
@@ -217,8 +217,8 @@ function AnalysisTab() {
                         </Card>
                       </Stack>
           
-                      <Grid sx={{width: '100%'}}>
-                        <Grid sx={{width: '100%', my: 1, backgroundColor: 'rgb(210, 238, 255)'}}>
+                      <Grid >
+                        <Grid sx={{ my: 1, backgroundColor: 'rgb(210, 238, 255)'}}>
                           <Typography sx={{fontSize: '11px', color: 'gray'}}>Registered Mandate</Typography>
                         </Grid>
                         <Grid>
@@ -248,8 +248,8 @@ function AnalysisTab() {
                         </Grid>
                       </Grid>
           
-                      <Grid sx={{width: '100%'}}>
-                        <Grid sx={{width: '100%', my: 1, backgroundColor: 'rgb(210, 238, 255)'}}>
+                      <Grid >
+                        <Grid sx={{ my: 1, backgroundColor: 'rgb(210, 238, 255)'}}>
                           <Typography sx={{fontSize: '11px', color: 'gray'}}>Rejected Mandate</Typography>
                         </Grid>
                         <Grid>
@@ -282,12 +282,12 @@ function AnalysisTab() {
           
                   </Grid>
           
-                  <Grid  sx={{width: '100%', border: '0.1px solid lightgray'}}>
+                  <Grid  sx={{border: '0.1px solid lightgray'}}>
           
-                    <Grid  sx={{width: '100%', borderBottom: '0.1px solid lightgray'}}>
+                    <Grid  sx={{ borderBottom: '0.1px solid lightgray'}}>
                         <Stack>
-                          <Grid sx={{width: '100%'}}>
-                            <Stack direction='row' sx={{width: '100%'}} display='flex' justifyContent='space-between' alignItems='center' paddingX={1}>
+                          <Grid >
+                            <Stack direction='row'  display='flex' justifyContent='space-between' alignItems='center' paddingX={1}>
                               <Typography sx={{fontSize: '12px'}}>Total Presentations: -</Typography>
                               <FormGroup>
                                 <Autocomplete
@@ -307,7 +307,7 @@ function AnalysisTab() {
           
                     </Grid>
                     
-                    <Grid container sx={{width: '100%', px:1, py:2}}>
+                    <Grid container sx={{px:1, py:2}}>
                       <Stack direction='row' flexWrap='wrap' gap={0.5}>
           
                         <Card sx={CardStyle}>

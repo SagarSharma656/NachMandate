@@ -94,7 +94,7 @@ export default function AllUsers() {
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
           <Table
-            sx={{ minWidth: 750 }}
+            // sx={{ minWidth: 750 }}
             aria-labelledby="tableTitle"
             size={dense ? 'small' : 'medium'}
           >
