@@ -4,6 +4,22 @@ export interface Year {
     id: string;
     name: string;
   }
+export interface Month{
+    id: string;
+    name: string;
+  }
+export interface PrimaryProduct{
+  id: string;
+  name: string;
+}
+export interface PrimaryBranch{
+  id:string;
+  name: string;
+}
+export interface VendorUser{
+  id:string;
+  name:string;
+}
 
   
  export type Order = 'asc' | 'desc';

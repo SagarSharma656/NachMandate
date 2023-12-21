@@ -1,6 +1,7 @@
 import {FormGroup, FormControl, InputLabel, Select, MenuItem, Typography, Grid, Card, Stack, Box, Autocomplete, TextField } from '@mui/material';
 import LaunchIcon from '@mui/icons-material/Launch';
 import { useState } from 'react';
+import { Month } from '../utils/types';
 
 
   
@@ -34,10 +35,7 @@ import { useState } from 'react';
     alignItems:'center'
   }
 
-  interface Month{
-    id: string;
-    name: string;
-  }
+  
 
   const months: Month[] =[
     {

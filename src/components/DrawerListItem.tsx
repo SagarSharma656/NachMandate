@@ -28,17 +28,17 @@ function DrawerListItem  (props: DrawerListItemProps) {
 
     if(link === 'DashBoard' || sublink === 'DashBoard' ){
       navigate('');
+      setSubLinkBg(sublinkName);
     }else{
       navigate(`/${linkName}/${sublinkName}`);
-    }
-    setSubLinkBg(sublinkName);
-   
+      setSubLinkBg(sublinkName);
+    }    
   }
 
   useEffect(()=>{
     handleClickOnSubLink('DashBoard', 'DahsBoard');
-   
-  },[])
+  }, [])
+
 
 
   const fontStyleOfLinks = {
@@ -96,7 +96,7 @@ function DrawerListItem  (props: DrawerListItemProps) {
                         width: "100%",
                         height: '100%',
                         borderRadius: '5px',
-                        backgroundColor: sublinkBg === sublink ? 'rgb(210, 238, 255)' : 'transparent',
+                        backgroundColor: sublinkBg === sublink ? 'rgb(210, 238, 255)' : 'red',
                         justifyContent: open ? 'initial' : 'center',
                         ml: 5,
                         px: 0,
