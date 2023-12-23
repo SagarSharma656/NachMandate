@@ -8,9 +8,6 @@ import {
   Autocomplete,
   TextField,
   Box,
-  Typography,
-  useTheme,
-  AppBar,
   Tabs,
   Tab,
 } from "@mui/material";
@@ -19,7 +16,9 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 import { Year } from "../../utils/types";
 import React from "react";
-import SwipeableViews from 'react-swipeableViews-views'
+import { CustomTabPanel } from "./CustomTabPanel";
+import AnalysisTab from "../../components/AnalysisTab";
+import MandateSearchTab from "../../components/MandateSearchTab";
 
 const btnStyle = {
   fontSize: "10px",
@@ -93,41 +92,13 @@ const years: Year[] = [
   }
 ] 
 
-interface TabPanelProps {
-  children?: React.ReactNode;
-  dir?: string;
-  index: number;
-  value: number;
-}
-
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`full-width-tabpanel-${index}`}
-      aria-labelledby={`full-width-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
 
 function a11yProps(index: number) {
   return {
-    id: `full-width-tab-${index}`,
-    'aria-controls': `full-width-tabpanel-${index}`,
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
   };
 }
-
-
 
 
 function Dashboard() {
@@ -135,16 +106,13 @@ function Dashboard() {
 
   const [yearValue, setYearValue] = useState <Year | null>();
 
-  const theme = useTheme();
-  const [value, setValue] = React.useState(0);
 
+  const [value, setValue] = React.useState(0);
+  
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-
-  const handleChangeIndex = (index: number) => {
-    setValue(index);
-  };
+ 
 
  
 
@@ -198,33 +166,22 @@ function Dashboard() {
         </Button>
       </Grid>
     
-      <Box sx={{ width: '100%' }}>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        textColor="secondary"
-        indicatorColor="secondary"
-        aria-label="secondary tabs example"
-      >
-        <Tab value="one" label="Item One" />
-        <Tab value="two" label="Item Two" />
-        <Tab value="three" label="Item Three" />
-      </Tabs>
-    </Box>
 
-      {/* <Grid
-        container
-        sx={{
-          // width: "100%",
-          minHeight: "450px",
-          border: "0.1px solid lightgray",
-          padding: 1,
-          gap: 2,
-          margin: 0,
-        }}
-      >
-        {tab === "Analysis" ? <AnalysisTab /> : <MandateSearchTab />}
-      </Grid> */}
+      <Box>
+      <Box>
+        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+          <Tab sx={{width:'30%'}} label="Analysis" {...a11yProps(0)} />
+          <Tab sx={{width:'30%'}} label="Mandate Search" {...a11yProps(1)} />
+        </Tabs>
+      </Box>
+      <CustomTabPanel value={value} index={0}>
+        <AnalysisTab/>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={1}>
+        <MandateSearchTab/>
+      </CustomTabPanel>
+    </Box>
+   
     </Container>
   );
 }

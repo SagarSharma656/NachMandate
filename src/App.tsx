@@ -1,8 +1,7 @@
 
 import { Fragment, useState } from 'react';
-import style from './App.module.css';
 import Login from './page/auth/Login';
-import  Dashboard  from './page/dashboard/Dashboard';
+import LandingPage from './page/landingPage/LandingPage';
 
 
 
@@ -14,8 +13,9 @@ function App() {
 
   return (
      <Fragment>
-        <Login setIsLogin={setIsLogin}/>
-        {/* <Dashboard/>         */}
+      {
+         isLogin? <LandingPage/> :<Login setIsLogin={setIsLogin}/>
+      }
      </Fragment>
   );
 }
