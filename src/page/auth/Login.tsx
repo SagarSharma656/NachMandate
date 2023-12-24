@@ -72,12 +72,12 @@ function Login(props: any) {
       <Grid>
         <Stack direction='column' justifyContent='space-between'>
             <Grid>
-                <Grid>
-                    <img src="" alt="logo" />
+                <Grid sx={{height:'40px' ,backgroundColor: 'rgb(58, 196, 125)'}}>
+                    <img src="src/assets/logo.png" alt="logo" />
                 </Grid>
 
                 <Grid>
-                    <Stack direction="row" >
+                    <Stack direction="row" justifyContent='space-between'>
                         <Grid sx={{width: '35%'}}>
                             <Grid>
                                 <h2>Login</h2>
@@ -183,8 +183,8 @@ function Login(props: any) {
                             </Grid>
                         </Grid>
 
-                        <Grid>
-                            <img src="../../assets/heroImg.png" alt="hero image" />
+                        <Grid sx={{width: '60%'}}>
+                            <img src="src/assets/heroImg.png" alt="hero image" style={{width: '100%'}}/>
                         </Grid>
                     </Stack>
                 </Grid>
