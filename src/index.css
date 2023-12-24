@@ -14,7 +14,9 @@
 }
 *{
   font-family: 'Poppins', sans-serif !important;
-
+}
+*:focus{
+  outline: none;
 }
 
 a {

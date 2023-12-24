@@ -110,7 +110,7 @@ const LeftDrawer = (props:LeftDrawerProps) => {
     return (
         <div>
             <Drawer variant="permanent" open={open}>
-                <DrawerHeader style={{minHeight: 38}}>
+                <DrawerHeader>
                     <IconButton onClick={handleDrawerClose}>
                         {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                     </IconButton>
