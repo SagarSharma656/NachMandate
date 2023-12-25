@@ -88,10 +88,23 @@ export default function AllUsers() {
     [order, orderBy, page, rowsPerPage],
   );
 
+
+  function findUser(_event: any){
+    let searchInput = _event.target.value;
+    const sortedData = []
+
+    visibleRows.map((row)=>{
+      if(searchInput === row.userName){
+        console.log(row.userName);
+        sortedData.push(row);
+      }
+    });
+  }
+
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar numSelected={selected.length} findUser={findUser}/>
         <TableContainer>
           <Table
             // sx={{ minWidth: 750 }}

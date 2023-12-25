@@ -204,7 +204,7 @@ function Login(props: any) {
                 </ul>
                 </div>
                 <div id={style.impNotesContainerImg}>
-                <img src="./secured.png" alt="#" />
+                <img src="src/assets/secured.png" alt="#" />
                 </div>
             </div>
             <div id={style.space}></div>
