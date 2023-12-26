@@ -14,7 +14,7 @@ import IconButton from "@mui/material/IconButton";
 import { visuallyHidden } from "@mui/utils";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import { Dialog, InputBase, Slide } from "@mui/material";
+import { Dialog, InputBase, Slide, dividerClasses } from "@mui/material";
 import AddUser from "./AddUser";
 import { TransitionProps } from "@mui/material/transitions";
 import SearchIcon from "@mui/icons-material/Search";
@@ -497,18 +497,24 @@ export function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
         </Typography>
       )}
 
-      <Box>
-        <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-              onChange={findUser}
-            />
-        </Search>
-      </Box>
+      {
+        numSelected > 0 ? (<Box></Box>) : (
+          <Box>
+            <Search>
+                <SearchIconWrapper>
+                  <SearchIcon />
+                </SearchIconWrapper>
+                <StyledInputBase
+                  placeholder="Search…"
+                  inputProps={{ "aria-label": "search" }}
+                  onChange={findUser}
+                />
+            </Search>
+        </Box>
+        )
+      }
+
+     
 
 
       {numSelected > 0 ? (
