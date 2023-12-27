@@ -8,6 +8,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import DrawerListItem from '../../components/DrawerListItem';
 import { useState } from 'react';
+import { Box } from '@mui/material';
 const drawerWidth = 240;
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -108,10 +109,10 @@ const LeftDrawer = (props:LeftDrawerProps) => {
     }
     
     return (
-        <div>
+        <Box>
             <Drawer variant="permanent" open={open}>
                 <DrawerHeader>
-                    <IconButton onClick={handleDrawerClose}>
+                    <IconButton onClick={handleDrawerClose} sx={{":focus":{outline: 'none'}}}>
                         {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                     </IconButton>
                 </DrawerHeader>
@@ -125,7 +126,7 @@ const LeftDrawer = (props:LeftDrawerProps) => {
                     }
                 </List>    
             </Drawer>
-        </div>
+        </Box>
     )
 }
 

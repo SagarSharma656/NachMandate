@@ -1,7 +1,6 @@
-import {Toolbar, IconButton, Typography, Stack, Box, Tooltip, Avatar, Menu, MenuItem } from "@mui/material"
+import {Toolbar, IconButton, Typography, Stack, Box, Tooltip, Avatar, Menu, MenuItem, ListItemButton } from "@mui/material"
 import MenuIcon from '@mui/icons-material/Menu'
 import { useNavigate } from "react-router-dom"
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import React from "react";
 
 
@@ -19,8 +18,10 @@ function Header(props:HeaderProps) {
  const navigate = useNavigate();
 
 
- function handleClickOnHomeBtn(){
-  navigate(' ');
+ function handleMenuClicks(setting: any){ 
+  if(setting === 'Dashboard'){
+    navigate(' ');
+  }    
  }
 
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
@@ -47,6 +48,7 @@ function Header(props:HeaderProps) {
             sx={{
               marginRight: 5,
               ...(open && { display: 'none' }),
+              ":focus":{outline: 'none'}
             }}
           >
             <MenuIcon />   
@@ -60,14 +62,8 @@ function Header(props:HeaderProps) {
            
             <Typography component='div'>
               <Stack direction='row' spacing={2} display='flex' alignItems='center'>
-
-                <Typography component='button' sx={{height: 25, width: 50, display: 'flex', justifyContent:'center', alignItems: 'center', fontSize: 12}} onClick={handleClickOnHomeBtn}>
-                    Home
-                </Typography>
-
                 <Box sx={{ flexGrow: 0}}>
                   <Tooltip title="Open settings">
-                    {/* <AccountCircleIcon onClick={handleOpenUserMenu}/> */}
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, ":focus":{outline:'none'} }}>
                       <Avatar alt="Remy Sharp" src="" />
                     </IconButton>
@@ -90,7 +86,7 @@ function Header(props:HeaderProps) {
                   >
                     {settings.map((setting) => (
                       <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                        <Typography textAlign="center">{setting}</Typography>
+                        <Typography textAlign="center" onClick={()=>{handleMenuClicks(setting)}}>{setting}</Typography>
                       </MenuItem>
                     ))}
                   </Menu>

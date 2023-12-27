@@ -3,18 +3,22 @@ import IFSCValidation from "../../components/IFSCValidation";
 import { useState } from "react";
 import {
   Autocomplete,
+  Checkbox,
   Container,
+  FormControl,
+  FormControlLabel,
   FormGroup,
+  FormLabel,
   Grid,
+  Radio,
+  RadioGroup,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
+import { AutoCollectionDate, Branch, CategoryCode, Language, MandateFormDataObject, Product, SponserBankCode, UnityCode } from "../../utils/types";
 
-interface Language {
-  id: string;
-  name: string;
-}
+
 
 const languages: Language[] = [
   {
@@ -22,12 +26,6 @@ const languages: Language[] = [
     name: "English",
   },
 ];
-
-interface AutoCollectionDate {
-  id: string;
-  name: string;
-}
-
 const autoCollectionDates: AutoCollectionDate[] = [
   {
     id: "1st of every month",
@@ -142,11 +140,6 @@ const autoCollectionDates: AutoCollectionDate[] = [
     name:"28th of every month",
   },
 ];
-
-interface Product{
-  id: string;
-  name: string;
-}
 const products : Product[] = [
   {
     id: "HOMELOAN",
@@ -165,23 +158,12 @@ const products : Product[] = [
     name:"SPLN",
   }
 ];
-
-interface CategoryCode{
-  id: string;
-  name: string;
-};
-
 const categoryCodes: CategoryCode[] = [
   {
     id:"LOAN INSTALMENT PAYMENT - L001",
     name:"LOAN INSTALMENT PAYMENT - L001",
   }
 ];
-
-interface Branch{
-  id: string;
-  name: string;
-}
 const branches: Branch[] = [
   {
     id:"JAIPUR",
@@ -204,7 +186,34 @@ const branches: Branch[] = [
     name:"NAGPUR",
   }
 ];
-
+const sponserBankCodes: SponserBankCode[] = [
+  {
+    id: 'HDFC',
+    name: 'HDFC',
+  },
+  {
+    id: 'IDFC BANK',
+    name: 'IDFC BANK',
+  },
+  {
+    id: 'KOTAK MAHINDRA BANK',
+    name: 'KOTAK MAHINDRA BANK',
+  },
+]
+const unityCodes: UnityCode[] =[
+  {
+    id: 'NACH00000000017335',
+    name: 'NACH00000000017335',
+  },
+  {
+    id: 'NACH00000000017335',
+    name: 'NACH00000000017335',
+  },
+  {
+    id: 'NACH00000000001977',
+    name: 'NACH00000000001977',
+  },
+]
 
 function NACHMandate() {
   const [languageValue, setLanguageValue] = useState<Language | null>();
@@ -212,55 +221,19 @@ function NACHMandate() {
   const [productValue, setProductValue] = useState<Product | null>();
   const [categoryCodeValue, setCategoryCodeValue] = useState<CategoryCode | null>();
   const [branchValue, setBranchValue] = useState<Branch | null>();
+  const [sponserBankCodeValue, setSponserBankCodeValue] = useState<SponserBankCode | null>();
+  const [unityCodeValue] = useState<UnityCode | null>();
 
-  const SponserBankCodeArr: string[] = [
-    "HDFC",
-    "IDFC BANK",
-    "KOTAK MAHINDRA BANK",
-  ];
+
   const UnityCodeArr: string[] = [
     "NACH00000000017335",
     "NACH00000000017335",
     "NACH00000000001977",
   ];
 
-  type formDataObject = {
-    language: string;
-    autoCollectionAmount: string;
-    autoCollectionDate: string;
-    product: string;
-    categoryCode: string;
-    branch: string;
-    UMRN: string;
-    dateOnMandate: string;
-    sponserBankCode: string;
-    unityCode: string;
-    create: boolean;
-    modify: boolean;
-    cancel: boolean;
-    I_WehearbyAuthorize: string;
-    toDebit: string;
-    bankAC_Number: string;
-    withBank: string;
-    IFSC: string;
-    MICR: string;
-    anAmountOrRupees: string;
-    frequency: string;
-    debitType: string;
-    reference1: string;
-    reference2: string;
-    reference3: string;
-    phoneNumber: string;
-    emailID: string;
-    periodFrom: string;
-    periodTo: string;
-    untilCancelled: string;
-    signPrimaryAccHolder: string;
-    signSecondaryAccHolder: string;
-    signTertiaryAccHolder: string;
-  };
 
-  const [formData, setFormData] = useState<formDataObject>({
+
+  const [formData, setFormData] = useState<MandateFormDataObject>({
     language: "",
     autoCollectionAmount: "",
     autoCollectionDate: "",
@@ -317,7 +290,7 @@ function NACHMandate() {
   return (
     <Container id={style.wrapper}>
       <FormGroup id={style.fromContainer} onSubmit={handleSubmit}>
-        <Grid container justifyContent="space-between">
+        <Grid id="container1" container justifyContent="space-between">
           <Grid item>
             <Autocomplete
               value={languageValue}
@@ -354,7 +327,7 @@ function NACHMandate() {
           </Grid>
         </Grid>
 
-        <Grid container>
+        <Grid id="container2" container>
           <Stack direction='row'>
             <Grid item>
               <TextField
@@ -423,272 +396,205 @@ function NACHMandate() {
           </Stack>
         </Grid>
 
-        <div id={style.container3} className={style.container}>
-          <div id={style.con3Sub1}>
+        <Grid id='container3' container justifyContent='space-between'>
+          <Grid id={style.con3Sub1} item>
             <img src="../../dummyQR.png" alt="#" />
-          </div>
+          </Grid>
 
-          <div id={style.con3Sub2}>
-            <label id={style.label32}>
-              <p>UMRN</p>
+          <Grid id={style.con3Sub2}>
 
-              <input
+            <Stack>
+              <TextField
+                fullWidth
+                id="standard-basic"
+                label="UMRN"
+                variant="standard"
                 type="text"
-                name="UMRN"
-                id="UMRN"
                 value={formData.UMRN}
                 onChange={handleOnChange}
               />
-            </label>
 
-            <label>
-              <p>Sponser Bank Code</p>
+              <Autocomplete
+                fullWidth
+                value={sponserBankCodeValue}
+                size="small"
+                getOptionLabel={(option) => option.name}
+                id="controllable-states-demo"
+                onChange={() => {}}
+                options={sponserBankCodes}
+                sx={{ maxWidth: 300 }}
+                renderInput={(params) => (
+                  <TextField {...params} label="Sponser Bank Code" />
+                )}
+              />
+            </Stack>
+          </Grid>
 
-              <select
-                name="sponserBankCode"
-                id="sponserBankCode"
-                value={formData.sponserBankCode}
-                onChange={handleOnChange}
-              >
-                <option value="#">Select</option>
-                {SponserBankCodeArr.map((bank) => {
-                  return <option key={bank} value={bank}>{bank}</option>;
-                })}
-              </select>
-            </label>
-          </div>
-
-          <div id={style.con3Sub3}>
-            <label>
-              <p>Date On Mandate</p>
-
-              <input
+          <Grid id='con3Sub3' item>
+            <Stack>
+              <TextField
+                id="standard-basic"
+                label="Date On Mandate"
+                variant="standard"
                 type="date"
-                name="dateOnMandate"
-                id="dateOnMandate"
                 value={formData.dateOnMandate}
                 onChange={handleOnChange}
               />
-            </label>
-
-            <label>
-              <p>Unity Code </p>
-
-              <select
-                name="unityCode"
-                id="unityCode"
-                value={formData.unityCode}
-                onChange={handleOnChange}
-              >
-                <option value="#">Select</option>
-                {UnityCodeArr.map((UnityCode) => {
-                  return <option key={UnityCode} value={UnityCode}>{UnityCode}</option>;
-                })}
-              </select>
-            </label>
-          </div>
-        </div>
-
-        <div id={style.container4} className={style.container}>
-          <div id={style.con4Sub1}>
-            <label>
-              <input
-                type="checkbox"
-                name="create"
-                id="create"
-                value={formData.create}
-                onChange={handleOnChange}
+              <Autocomplete
+                value={unityCodeValue}
+                size="small"
+                getOptionLabel={(option) => option.name}
+                id="controllable-states-demo"
+                onChange={() => {}}
+                options={unityCodes}
+                sx={{ width: 300 }}
+                renderInput={(params) => (
+                  <TextField {...params} label="Unity Code" />
+                )}
               />
-              <p>Create</p>
-            </label>
+            </Stack>
+          </Grid>
+        </Grid>
 
-            <label>
-              <input
-                type="checkbox"
-                name="modify"
-                id="modify"
-                value={formData.modify}
-                onChange={handleOnChange}
+        <Grid id='container4' container alignItems='center'>
+          <Grid id='con4Sub1' item>
+            <Stack direction='row'>
+              <FormControlLabel 
+                control={
+                  <Checkbox 
+                    value={formData.create}
+                    onChange={handleOnChange}
+                  />
+                } 
+                label="Create" 
               />
-              <p>Modify</p>
-            </label>
-
-            <label>
-              <input
-                type="checkbox"
-                name="cancel"
-                id="cancel"
-                value={formData.cancel}
-                onChange={handleOnChange}
+              <FormControlLabel 
+                control={
+                  <Checkbox 
+                    value={formData.modify}
+                    onChange={handleOnChange}
+                  />
+                } 
+                label="Modify" 
               />
-              <p>Cancel</p>
-            </label>
-          </div>
-
-          <div id={style.con4Sub2}>
-            <label>
-              <p>I/We hearby Authorize</p>
-
-              <input
-                type="text"
-                name="I_WehearbyAuthorize"
-                id="I_WehearbyAuthorize"
-                value={formData.I_WehearbyAuthorize}
-                onChange={handleOnChange}
+              <FormControlLabel 
+                control={
+                  <Checkbox 
+                    value={formData.cancel}
+                    onChange={handleOnChange}
+                  />
+                } 
+                label="Cancel" 
               />
-            </label>
-          </div>
+            </Stack>
+          </Grid>
 
-          <div id={style.con4Sub3}>
-            <label>
-              <p>To Debit</p>
-
-              <div id={style.toDebitInputCon4}>
-                <label>
-                  <input
-                    type="radio"
-                    name="toDebit"
-                    id="SB"
-                    value="SB"
-                    checked={formData.toDebit === "SB"}
-                    onChange={handleOnChange}
-                  />
-                  <p>SB</p>
-                </label>
-
-                <label>
-                  <input
-                    type="radio"
-                    name="toDebit"
-                    id="CA"
-                    value="CA"
-                    checked={formData.toDebit === "CA"}
-                    onChange={handleOnChange}
-                  />
-                  <p>CA</p>
-                </label>
-
-                <label>
-                  <input
-                    type="radio"
-                    name="toDebit"
-                    id="CC"
-                    value="CC"
-                    checked={formData.toDebit === "CC"}
-                    onChange={handleOnChange}
-                  />
-                  <p>CC</p>
-                </label>
-
-                <label>
-                  <input
-                    type="radio"
-                    name="toDebit"
-                    id="SB-NRE"
-                    value="SB-NRE"
-                    checked={formData.toDebit === "SB-NRE"}
-                    onChange={handleOnChange}
-                  />
-                  <p>SB-NRE</p>
-                </label>
-
-                <label>
-                  <input
-                    type="radio"
-                    name="toDebit"
-                    id="SB-NRO"
-                    value="SB-NRO"
-                    checked={formData.toDebit === "SB-NRO"}
-                    onChange={handleOnChange}
-                  />
-                  <p>SB-NRO</p>
-                </label>
-
-                <label>
-                  <input
-                    type="radio"
-                    name="toDebit"
-                    id="other"
-                    value="Other"
-                    checked={formData.toDebit === "Other"}
-                    onChange={handleOnChange}
-                  />
-                  <p>Other</p>
-                </label>
-              </div>
-            </label>
-          </div>
-        </div>
-
-        <div id={style.container5} className={style.container}>
-          <label>
-            <p>Bank A/C Number</p>
-            <input
-              type="number"
-              name="bankAC_Number"
-              id="bankAC_Number"
-              value={formData.bankAC_Number}
+          <Grid id='con4Sub2' item>
+            <TextField
+              fullWidth
+              id="standard-basic"
+              label="I/We hearby Authorize"
+              variant="standard"
+              type="text"
+              value={formData.I_WehearbyAuthorize}
               onChange={handleOnChange}
             />
-          </label>
-        </div>
+          </Grid>
 
-        <div id={style.container6} className={style.container}>
-          <label id={style.con6Sub1}>
-            <p>With Bank</p>
+          <Grid id='con4Sub3' item>
+            <FormControl>
+              <Stack direction='row' alignItems='center' spacing={2}>
+                <FormLabel id="demo-radio-buttons-group-label">To Debit</FormLabel>
+                <RadioGroup
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  defaultValue="female"
+                  name="radio-buttons-group"
+                  >
+                  <Stack direction='row'>
+                    <FormControlLabel value="SB" control={<Radio />} label="SB" />
+                    <FormControlLabel value="CA" control={<Radio />} label="CA" />
+                    <FormControlLabel value="CC" control={<Radio />} label="CC" />
+                    <FormControlLabel value="SB-NRE" control={<Radio />} label="SB-NRE" />
+                    <FormControlLabel value="SB-NRO" control={<Radio />} label="SB-NRO" />
+                    <FormControlLabel value="Other" control={<Radio />} label="Other" />
+                  </Stack>
+                </RadioGroup>
+              </Stack>
+            </FormControl>
+          </Grid>
+        </Grid>
 
-            <input
+        <Grid id='container5' container alignItems='center'>
+
+          <TextField
+            fullWidth
+            id="standard-basic"
+            label="Bank A/C Number"
+            variant="standard"
+            type="number"
+          />
+        </Grid>
+
+        <Grid id='container6' container alignItems='center'>
+
+          <Stack direction='row' alignItems='center' spacing={2}>
+            <TextField
+              fullWidth
+              id="standard-basic"
+              label="With Bank"
+              variant="standard"
               type="text"
-              name="withBank"
-              id="withBank"
               value={formData.withBank}
               onChange={handleOnChange}
             />
-          </label>
 
-          <label id={style.con6Sub2}>
-            <p>IFSC</p>
-            <input
-              readOnly
+            <TextField
+              fullWidth
+              id="standard-basic"
+              label="IFSC"
+              variant="standard"
               type="text"
-              name="IFSC"
-              id="IFSC"
               onClick={() => {
                 setShow_IFSC_ValidationForm(true);
               }}
             />
-          </label>
+            <Typography>
+              OR
+            </Typography>
 
-          <label id={style.con6Sub3}>
-            <p>or MICR</p>
-
-            <input
-              readOnly
-              type="text"
-              name="MICR"
-              id="MICR"
-              onClick={() => {
-                setShow_IFSC_ValidationForm(true);
-              }}
-            />
-          </label>
-        </div>
-
-        <div id={style.container7} className={style.container}>
-          <label>
-            <p>an amount or Rupees</p>
-
-            <input readOnly type="text" name="" id="" />
-
-            <input
+            <TextField
+              fullWidth
+              id="standard-basic"
+              label="MICR"
+              variant="standard"
               type="number"
-              name="anAmountOrRupees"
-              id="anAmountOrRupees"
-              value={formData.anAmountOrRupees}
-              onChange={handleOnChange}
+              onClick={() => {
+                setShow_IFSC_ValidationForm(true);
+              }}
             />
-          </label>
-        </div>
+          </Stack>
+        </Grid>
+
+        <Grid id='container7' container alignItems='center'>
+
+          <Stack direction='row'>
+            <TextField
+              fullWidth
+              disabled
+              id="standard-basic"
+              label="Amount in Word"
+              variant="standard"
+              type="text"
+            />
+            <TextField
+              fullWidth
+              id="standard-basic"
+              label="Amount"
+              variant="standard"
+              type="number"
+            />
+          </Stack>
+        </Grid>
 
         <div id={style.container8} className={style.container}>
           <label id={style.con8Sub1}>
