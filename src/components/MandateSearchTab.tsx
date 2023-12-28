@@ -13,7 +13,7 @@ import { Order } from '../utils/types';
 import { MandateData } from '../utils/types'
 import { EnhancedTableHead, EnhancedTableToolbar, rows } from './MandateSearchTableHead';
 import { getComparator, stableSort } from '../utils/tablefunction';
-import { Box } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 
 export default function MandateSearchTab() {
   const [order, setOrder] = React.useState<Order>('asc');
@@ -89,110 +89,116 @@ export default function MandateSearchTab() {
   );
 
   return (
-    <Box sx={{width: '100%'}}>
-      <Paper sx={{width: '100%' ,mb: 2 }}>
-        <EnhancedTableToolbar numSelected={selected.length} />
-        <TableContainer>
-          <Table
-            aria-labelledby="tableTitle"
-            size={dense ? 'small' : 'medium'}
-          >
-            <EnhancedTableHead
-              numSelected={selected.length}
-              order={order}
-              orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
-              onRequestSort={handleRequestSort}
-              rowCount={rows.length}
-            />
-            <TableBody>
-              {visibleRows.map((row, index) => {
-                const isItemSelected = isSelected(row.mandateId);
-                const labelId = `enhanced-table-checkbox-${index}`;
+    <Box>
+      <Grid>
+        <Box sx={{width: '100%'}}>
+        <Paper sx={{width: '100%' ,mb: 2 }}>
+          <EnhancedTableToolbar numSelected={selected.length} />
+          <TableContainer>
+            <Table
+              aria-labelledby="tableTitle"
+              size={dense ? 'small' : 'medium'}
+            >
+              <EnhancedTableHead
+                numSelected={selected.length}
+                order={order}
+                orderBy={orderBy}
+                onSelectAllClick={handleSelectAllClick}
+                onRequestSort={handleRequestSort}
+                rowCount={rows.length}
+              />
+              <TableBody>
+                {visibleRows.map((row, index) => {
+                  const isItemSelected = isSelected(row.mandateId);
+                  const labelId = `enhanced-table-checkbox-${index}`;
 
-                return (
-                  <TableRow
-                    hover
-                    onClick={(event) => handleClick(event, row.mandateId)}
-                    role="checkbox"
-                    aria-checked={isItemSelected}
-                    tabIndex={-1}
-                    key={row.mandateId}
-                    selected={isItemSelected}
-                    sx={{ cursor: 'pointer' }}
-                  >
-                    <TableCell padding="checkbox">
-                      <Checkbox
-                        color="primary"
-                        checked={isItemSelected}
-                        inputProps={{
-                          'aria-labelledby': labelId,
-                        }}
-                      />
-                    </TableCell>
-                    <TableCell
-                      component="th"
-                      id={labelId}
-                      scope="row"
-                      padding="none"
-
+                  return (
+                    <TableRow
+                      hover
+                      onClick={(event) => handleClick(event, row.mandateId)}
+                      role="checkbox"
+                      aria-checked={isItemSelected}
+                      tabIndex={-1}
+                      key={row.mandateId}
+                      selected={isItemSelected}
+                      sx={{ cursor: 'pointer' }}
                     >
-                      {row.srno}
-                    </TableCell>
-                    <TableCell align="right">{row.mandateStatus}</TableCell>
-                    <TableCell align="right">{row.UMRN}</TableCell>
-                    <TableCell align="right">{row.mandateId}</TableCell>
-                    <TableCell align="right">{row.reference1}</TableCell>
-                    <TableCell align="right">{row.customerName}</TableCell>
-                    <TableCell align="right">{row.customerAccountNo}</TableCell>
-                    <TableCell align="right">{row.amount}</TableCell>
-                    <TableCell align="right">{row.amountInWord}</TableCell>
-                    <TableCell align="right">{row.IFSC_MICR}</TableCell>
-                    <TableCell align="right">{row.customerBank}</TableCell>
-                    <TableCell align="right">{row.sponsorBank}</TableCell>
-                    <TableCell align="right">{row.dateOnMandate}</TableCell>
-                    <TableCell align="right">{row.formDate}</TableCell>
-                    <TableCell align="right">{row.debitTo}</TableCell>
-                    <TableCell align="right">{row.frequency}</TableCell>
-                    <TableCell align="right">{row.mandateType}</TableCell>
-                    <TableCell align="right">{row.rejectResion}</TableCell>
-                    <TableCell align="right">{row.createOn}</TableCell>
-                    <TableCell align="right">{row.createBy}</TableCell>
-                    <TableCell align="right">{row.lastActivityOn}</TableCell>
-                    <TableCell align="right">{row.product}</TableCell>
-                    <TableCell align="right">{row.branch}</TableCell>
-                    <TableCell align="right">{row.categoryCode}</TableCell>
-                    <TableCell align="right">{row.utilityCode}</TableCell>
-                  </TableRow>
-                );
-              })}
-              {emptyRows > 0 && (
-                <TableRow
-                  style={{
-                    height: (dense ? 33 : 53) * emptyRows,
-                  }}
-                >
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-              <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
-      />
-      </Paper>
+                      <TableCell padding="checkbox">
+                        <Checkbox
+                          color="primary"
+                          checked={isItemSelected}
+                          inputProps={{
+                            'aria-labelledby': labelId,
+                          }}
+                        />
+                      </TableCell>
+                      <TableCell
+                        component="th"
+                        id={labelId}
+                        scope="row"
+                        padding="none"
 
-  </Box>
+                      >
+                        {row.srno}
+                      </TableCell>
+                      <TableCell align="right">{row.mandateStatus}</TableCell>
+                      <TableCell align="right">{row.UMRN}</TableCell>
+                      <TableCell align="right">{row.mandateId}</TableCell>
+                      <TableCell align="right">{row.reference1}</TableCell>
+                      <TableCell align="right">{row.customerName}</TableCell>
+                      <TableCell align="right">{row.customerAccountNo}</TableCell>
+                      <TableCell align="right">{row.amount}</TableCell>
+                      <TableCell align="right">{row.amountInWord}</TableCell>
+                      <TableCell align="right">{row.IFSC_MICR}</TableCell>
+                      <TableCell align="right">{row.customerBank}</TableCell>
+                      <TableCell align="right">{row.sponsorBank}</TableCell>
+                      <TableCell align="right">{row.dateOnMandate}</TableCell>
+                      <TableCell align="right">{row.formDate}</TableCell>
+                      <TableCell align="right">{row.debitTo}</TableCell>
+                      <TableCell align="right">{row.frequency}</TableCell>
+                      <TableCell align="right">{row.mandateType}</TableCell>
+                      <TableCell align="right">{row.rejectResion}</TableCell>
+                      <TableCell align="right">{row.createOn}</TableCell>
+                      <TableCell align="right">{row.createBy}</TableCell>
+                      <TableCell align="right">{row.lastActivityOn}</TableCell>
+                      <TableCell align="right">{row.product}</TableCell>
+                      <TableCell align="right">{row.branch}</TableCell>
+                      <TableCell align="right">{row.categoryCode}</TableCell>
+                      <TableCell align="right">{row.utilityCode}</TableCell>
+                    </TableRow>
+                  );
+                })}
+                {emptyRows > 0 && (
+                  <TableRow
+                    style={{
+                      height: (dense ? 33 : 53) * emptyRows,
+                    }}
+                  >
+                    <TableCell colSpan={6} />
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+                <FormControlLabel
+          control={<Switch checked={dense} onChange={handleChangeDense} />}
+          label="Dense padding"
+        />
+        </Paper>
+
+        </Box>
+      </Grid>
+    </Box>
+
+  
   );
 }

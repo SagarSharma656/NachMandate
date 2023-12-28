@@ -102,8 +102,8 @@ export default function AllUsers() {
   }
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Paper sx={{ width: '100%', mb: 2 }}>
+    <Box sx={{margin: 'auto'}}>
+      <Paper>
         <EnhancedTableToolbar numSelected={selected.length} findUser={findUser}/>
         <TableContainer>
           <Table

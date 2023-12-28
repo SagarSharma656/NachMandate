@@ -10,18 +10,23 @@ interface HeaderProps{
   open: boolean,
   handleDrawerOpen: any,
   AppBar: any
+  setIsLogin: any
 }
 
 
 function Header(props:HeaderProps) {
- const {open , handleDrawerOpen, AppBar} = props
+ const {open , handleDrawerOpen, AppBar, setIsLogin} = props
  const navigate = useNavigate();
 
 
  function handleMenuClicks(setting: any){ 
   if(setting === 'Dashboard'){
     navigate(' ');
-  }    
+  }
+  if(setting === 'Logout'){
+    setIsLogin(false);
+    navigate(' ');
+  }
  }
 
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);

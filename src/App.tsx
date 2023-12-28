@@ -1,7 +1,8 @@
 
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import Login from './page/auth/Login';
 import LandingPage from './page/landingPage/LandingPage';
+import { Box } from '@mui/material';
 
 
 
@@ -12,11 +13,12 @@ function App() {
 
 
   return (
-     <Fragment>
+     <Box>
       {
-         isLogin? <LandingPage/> :<Login setIsLogin={setIsLogin}/>
+         isLogin? <LandingPage setIsLogin={setIsLogin}/> 
+            :<Login setIsLogin={setIsLogin}/>
       }
-     </Fragment>
+     </Box>
   );
 }
 

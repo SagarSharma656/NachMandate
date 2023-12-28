@@ -93,9 +93,7 @@ import UPIPendingForExecution from "../upiPresentation/UPIPendingForExecution";
 
 import UPIBulkMandateCreation from "../upiBulk/UPIBulkMandateCreation";
 import BulkUPIVerification from "../upiBulk/BulkUPIVerification";
-import { Typography } from "@mui/material";
 
-// import MainScreen from '../../components/MainScreen'
 
 const drawerWidth = 240;
 
@@ -130,7 +128,14 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-export default function LandingPage() {
+interface LandingPageProps{
+  setIsLogin: any;
+}
+
+export default function LandingPage( props: LandingPageProps) {
+
+  const {setIsLogin} = props;
+  
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -145,6 +150,7 @@ export default function LandingPage() {
           AppBar={AppBar}
           open={open}
           handleDrawerOpen={handleDrawerOpen}
+          setIsLogin={setIsLogin}
         />
 
         <LeftDrawer open={open} setOpen={setOpen} />

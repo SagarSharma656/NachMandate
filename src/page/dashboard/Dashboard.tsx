@@ -26,6 +26,7 @@ const btnStyle = {
   py: "2px",
   outline: "none",
   height: "0",
+  ":focus":{outline: 'none'}
 };
 
 
@@ -170,8 +171,8 @@ function Dashboard() {
       <Box>
       <Box>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab sx={{width:'30%'}} label="Analysis" {...a11yProps(0)} />
-          <Tab sx={{width:'30%'}} label="Mandate Search" {...a11yProps(1)} />
+          <Tab sx={{width:'30%', ":focus":{outline: 'none'}}} label="Analysis" {...a11yProps(0)} />
+          <Tab sx={{width:'30%', ":focus":{outline: 'none'}}} label="Mandate Search" {...a11yProps(1)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>

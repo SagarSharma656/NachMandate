@@ -3,8 +3,11 @@ import IFSCValidation from "../../components/IFSCValidation";
 import { useState } from "react";
 import {
   Autocomplete,
+  Box,
+  Button,
   Checkbox,
   Container,
+  Dialog,
   FormControl,
   FormControlLabel,
   FormGroup,
@@ -12,13 +15,26 @@ import {
   Grid,
   Radio,
   RadioGroup,
+  Slide,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
-import { AutoCollectionDate, Branch, CategoryCode, Language, MandateFormDataObject, Product, SponserBankCode, UnityCode } from "../../utils/types";
+import { AutoCollectionDate, Branch, CategoryCode, Language, Product, SponserBankCode, UnityCode } from "../../utils/types";
+import { TransitionProps } from "@mui/material/transitions";
+import React from "react";
+import DateP
 
 
+
+const Transition = React.forwardRef(function Transition(
+  props: TransitionProps & {
+    children: React.ReactElement;
+  },
+  ref: React.Ref<unknown>,
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const languages: Language[] = [
   {
@@ -224,652 +240,624 @@ function NACHMandate() {
   const [sponserBankCodeValue, setSponserBankCodeValue] = useState<SponserBankCode | null>();
   const [unityCodeValue] = useState<UnityCode | null>();
 
-
-  const UnityCodeArr: string[] = [
-    "NACH00000000017335",
-    "NACH00000000017335",
-    "NACH00000000001977",
-  ];
-
-
-
-  const [formData, setFormData] = useState<MandateFormDataObject>({
-    language: "",
-    autoCollectionAmount: "",
-    autoCollectionDate: "",
-    product: "",
-    categoryCode: "",
-    branch: "",
-    UMRN: "",
-    dateOnMandate: "",
-    sponserBankCode: "",
-    unityCode: "",
-    create: false,
-    modify: false,
-    cancel: false,
-    I_WehearbyAuthorize: "",
-    toDebit: "",
-    bankAC_Number: "",
-    withBank: "",
-    IFSC: "",
-    MICR: "",
-    anAmountOrRupees: "",
-    frequency: "",
-    debitType: "",
-    reference1: "",
-    reference2: "",
-    reference3: "",
-    phoneNumber: "",
-    emailID: "",
-    periodFrom: "",
-    periodTo: "",
-    untilCancelled: "",
-    signPrimaryAccHolder: "",
-    signSecondaryAccHolder: "",
-    signTertiaryAccHolder: "",
-  });
-
-  const [show_IFSC_ValidationForm, setShow_IFSC_ValidationForm] =
-    useState<boolean>(false);
-
-  function handleOnChange(event: any) {
-    const { name, value, type, checked } = event.target;
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
+  const IFSCValidationFormStyle = {
+    position: 'absolute', 
+    top: '0', 
+    left: '0', 
+    backgroundColor: 'lightgray'
   }
+  
+
+  // const [formData, setFormData] = useState<MandateFormDataObject>({
+  //   language: "",
+  //   autoCollectionAmount: "",
+  //   autoCollectionDate: "",
+  //   product: "",
+  //   categoryCode: "",
+  //   branch: "",
+  //   UMRN: "",
+  //   dateOnMandate: "",
+  //   sponserBankCode: "",
+  //   unityCode: "",
+  //   create: false,
+  //   modify: false,
+  //   cancel: false,
+  //   I_WehearbyAuthorize: "",
+  //   toDebit: "",
+  //   bankAC_Number: "",
+  //   withBank: "",
+  //   IFSC: "",
+  //   MICR: "",
+  //   anAmountOrRupees: "",
+  //   frequency: "",
+  //   debitType: "",
+  //   reference1: "",
+  //   reference2: "",
+  //   reference3: "",
+  //   phoneNumber: "",
+  //   emailID: "",
+  //   periodFrom: "",
+  //   periodTo: "",
+  //   untilCancelled: "",
+  //   signPrimaryAccHolder: "",
+  //   signSecondaryAccHolder: "",
+  //   signTertiaryAccHolder: "",
+  // });
+
+  const [show_IFSC_ValidationForm, setShow_IFSC_ValidationForm] = useState<boolean>(false);
+
+  const handleClickOpenAddUser = () => {
+    setShow_IFSC_ValidationForm(true);
+  };
+  const handleCloseAddUser = () => {
+    setShow_IFSC_ValidationForm(false);
+  };
+
+
+  // function handleOnChange(event: any) {
+  //   const { name, value, type, checked } = event.target;
+
+  //   setFormData((prev) => ({
+  //     ...prev,
+  //     [name]: type === "checkbox" ? checked : value,
+  //   }));
+  // }
 
   function handleSubmit(event: any) {
     event.preventDefault();
-    console.log(formData)
+    // console.log(formData)
 
   }
 
   return (
-    <Container id={style.wrapper}>
+    <Container id={style.wrapper} sx={{position: 'relative'}}>
       <FormGroup id={style.fromContainer} onSubmit={handleSubmit}>
-        <Grid id="container1" container justifyContent="space-between">
-          <Grid item>
-            <Autocomplete
-              value={languageValue}
-              size="small"
-              getOptionLabel={(option) => option.name}
-              id="controllable-states-demo"
-              onChange={() => {}}
-              options={languages}
-              sx={{ width: 300 }}
-              renderInput={(params) => (
-                <TextField {...params} label="Language" />
-              )}
-            />
+        <Grid container spacing={2}>
+
+        
+          <Grid id="container1" container item>
+            {/* <Stack direction='row' justifyContent="space-between" spacing={3}> */}
+              <Grid item xs={4}>
+                <Autocomplete
+                  fullWidth
+                  value={languageValue}
+                  size="small"
+                  getOptionLabel={(option) => option.name}
+                  id="controllable-states-demo"
+                  onChange={() => {}}
+                  options={languages}
+                  // sx={{ width: 300 }}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Language" />
+                    )}
+                    />
+              </Grid>
+
+              <Grid container xs={8} p={1}>
+                {/* <Stack direction='row' spacing={2}> */}
+
+                  <Grid item xs={3}>
+                    <Typography fontSize='11px'>E-Mandate Authorization Date</Typography>
+                  </Grid>
+
+                  <Grid item xs={3}>
+                    <Typography fontSize="11px">Current Mandate Status</Typography>
+                  </Grid>
+
+                  <Grid item xs={3}>
+                    <Typography fontSize="11px">Mandate Mode</Typography>
+                  </Grid>
+
+                  <Grid item xs={3}>
+                    <Typography fontSize="11px">Mandate ID</Typography>
+                  </Grid>
+                {/* </Stack> */}
+              </Grid>
+            {/* </Stack> */}
           </Grid>
 
-          <Grid item>
-            <Grid item>
-              <Typography fontSize="10px">
-                E-Mandate Authorization Date
-              </Typography>
+          <Grid id="container2" container item spacing={1}>
+            <Grid container item xs={12} spacing={1}>
+                {/* <Stack direction='row'> */}
+                  <Grid item xs={8}>
+                    <TextField
+                      fullWidth
+                      id="standard-basic"
+                      label="Auto Collection Amount"
+                      variant="filled"
+                      type="number"
+                      size="small"
+                    />
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Autocomplete
+                      fullWidth
+                      value={autoCollectionDateValue}
+                      size="small"
+                      getOptionLabel={(option) => option.name}
+                      id="controllable-states-demo"
+                      onChange={() => {}}
+                      options={autoCollectionDates}
+                      // sx={{ width: '100%' }}
+                      renderInput={(params) => (
+                        <TextField {...params} label="Auto Collection Date" />
+                      )}
+                    />
+                  </Grid> 
+                {/* </Stack> */}
             </Grid>
-
-            <Grid item>
-              <Typography fontSize="10px">Current Mandate Status</Typography>
-            </Grid>
-
-            <Grid item>
-              <Typography fontSize="10px">Mandate Mode</Typography>
-            </Grid>
-
-            <Grid item>
-              <Typography fontSize="10px">Mandate ID</Typography>
-            </Grid>
-          </Grid>
-        </Grid>
-
-        <Grid id="container2" container>
-          <Stack direction='row'>
-            <Grid item>
-              <TextField
-                id="standard-basic"
-                label="Auto Collection Amount"
-                variant="standard"
-                type="number"
-              />
-            </Grid>
-            <Grid item>
-              <Autocomplete
-                value={autoCollectionDateValue}
-                size="small"
-                getOptionLabel={(option) => option.name}
-                id="controllable-states-demo"
-                onChange={() => {}}
-                options={autoCollectionDates}
-                sx={{ width: 300 }}
-                renderInput={(params) => (
-                  <TextField {...params} label="Auto Collection Date" />
-                )}
-              />
-            </Grid>
-            <Grid item>
-              <Autocomplete
-                value={productValue}
-                size="small"
-                getOptionLabel={(option) => option.name}
-                id="controllable-states-demo"
-                onChange={() => {}}
-                options={products}
-                sx={{ width: 300 }}
-                renderInput={(params) => (
-                  <TextField {...params} label="Product" />
-                )}
-              />
-            </Grid>
-            <Grid item>
-              <Autocomplete
-                value={categoryCodeValue}
-                size="small"
-                getOptionLabel={(option) => option.name}
-                id="controllable-states-demo"
-                onChange={() => {}}
-                options={categoryCodes}
-                sx={{ width: 300 }}
-                renderInput={(params) => (
-                  <TextField {...params} label="Category Code" />
-                )}
-              />
-            </Grid>
-            <Grid item>
-              <Autocomplete
-                value={branchValue}
-                size="small"
-                getOptionLabel={(option) => option.name}
-                id="controllable-states-demo"
-                onChange={() => {}}
-                options={branches}
-                sx={{ width: 300 }}
-                renderInput={(params) => (
-                  <TextField {...params} label="Branch" />
-                )}
-              />
-            </Grid>
-          </Stack>
-        </Grid>
-
-        <Grid id='container3' container justifyContent='space-between'>
-          <Grid id={style.con3Sub1} item>
-            <img src="../../dummyQR.png" alt="#" />
-          </Grid>
-
-          <Grid id={style.con3Sub2}>
-
-            <Stack>
-              <TextField
-                fullWidth
-                id="standard-basic"
-                label="UMRN"
-                variant="standard"
-                type="text"
-                value={formData.UMRN}
-                onChange={handleOnChange}
-              />
-
-              <Autocomplete
-                fullWidth
-                value={sponserBankCodeValue}
-                size="small"
-                getOptionLabel={(option) => option.name}
-                id="controllable-states-demo"
-                onChange={() => {}}
-                options={sponserBankCodes}
-                sx={{ maxWidth: 300 }}
-                renderInput={(params) => (
-                  <TextField {...params} label="Sponser Bank Code" />
-                )}
-              />
-            </Stack>
-          </Grid>
-
-          <Grid id='con3Sub3' item>
-            <Stack>
-              <TextField
-                id="standard-basic"
-                label="Date On Mandate"
-                variant="standard"
-                type="date"
-                value={formData.dateOnMandate}
-                onChange={handleOnChange}
-              />
-              <Autocomplete
-                value={unityCodeValue}
-                size="small"
-                getOptionLabel={(option) => option.name}
-                id="controllable-states-demo"
-                onChange={() => {}}
-                options={unityCodes}
-                sx={{ width: 300 }}
-                renderInput={(params) => (
-                  <TextField {...params} label="Unity Code" />
-                )}
-              />
-            </Stack>
-          </Grid>
-        </Grid>
-
-        <Grid id='container4' container alignItems='center'>
-          <Grid id='con4Sub1' item>
-            <Stack direction='row'>
-              <FormControlLabel 
-                control={
-                  <Checkbox 
-                    value={formData.create}
-                    onChange={handleOnChange}
+            <Grid container item xs={12} spacing={1}>
+              {/* <Stack direction='row'> */}
+                <Grid item xs={4}>
+                  <Autocomplete
+                    fullWidth
+                    value={productValue}
+                    size="small"
+                    getOptionLabel={(option) => option.name}
+                    id="controllable-states-demo"
+                    onChange={() => {}}
+                    options={products}
+                    // sx={{ width: 300 }}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Product" />
+                    )}
                   />
-                } 
-                label="Create" 
-              />
-              <FormControlLabel 
-                control={
-                  <Checkbox 
-                    value={formData.modify}
-                    onChange={handleOnChange}
+                </Grid>
+                <Grid item xs={4}>
+                  <Autocomplete
+                    fullWidth
+                    value={categoryCodeValue}
+                    size="small"
+                    getOptionLabel={(option) => option.name}
+                    id="controllable-states-demo"
+                    onChange={() => {}}
+                    options={categoryCodes}
+                    // sx={{ width: 300 }}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Category Code" />
+                    )}
                   />
-                } 
-                label="Modify" 
-              />
-              <FormControlLabel 
-                control={
-                  <Checkbox 
-                    value={formData.cancel}
-                    onChange={handleOnChange}
+                </Grid>
+                <Grid item xs={4}>
+                  <Autocomplete
+                    value={branchValue}
+                    size="small"
+                    getOptionLabel={(option) => option.name}
+                    id="controllable-states-demo"
+                    onChange={() => {}}
+                    options={branches}
+                    // sx={{ width: 300 }}
+                    renderInput={(params) => (
+                      <TextField {...params} label="Branch" />
+                    )}
                   />
-                } 
-                label="Cancel" 
-              />
-            </Stack>
+                </Grid>
+              {/* </Stack> */}
+            </Grid>
           </Grid>
 
-          <Grid id='con4Sub2' item>
-            <TextField
-              fullWidth
-              id="standard-basic"
-              label="I/We hearby Authorize"
-              variant="standard"
-              type="text"
-              value={formData.I_WehearbyAuthorize}
-              onChange={handleOnChange}
-            />
-          </Grid>
+          <Grid id='container3' container item spacing={1} justifyContent='space-between'>
+            <Grid id='con3Sub1' item xs={2}>
+              <img src="../../dummyQR.png" alt="#" />
+            </Grid>
 
-          <Grid id='con4Sub3' item>
-            <FormControl>
-              <Stack direction='row' alignItems='center' spacing={2}>
-                <FormLabel id="demo-radio-buttons-group-label">To Debit</FormLabel>
-                <RadioGroup
-                  aria-labelledby="demo-radio-buttons-group-label"
-                  defaultValue="female"
-                  name="radio-buttons-group"
-                  >
-                  <Stack direction='row'>
-                    <FormControlLabel value="SB" control={<Radio />} label="SB" />
-                    <FormControlLabel value="CA" control={<Radio />} label="CA" />
-                    <FormControlLabel value="CC" control={<Radio />} label="CC" />
-                    <FormControlLabel value="SB-NRE" control={<Radio />} label="SB-NRE" />
-                    <FormControlLabel value="SB-NRO" control={<Radio />} label="SB-NRO" />
-                    <FormControlLabel value="Other" control={<Radio />} label="Other" />
-                  </Stack>
-                </RadioGroup>
+            <Grid id='con3Sub2' item xs={6}>
+
+              <Stack spacing={1}>
+                <TextField
+                  fullWidth
+                  id="standard-basic"
+                  label="UMRN"
+                  variant="filled"
+                  type="text"
+                  size="small"
+                
+                />
+
+                <Autocomplete
+                  fullWidth
+                  value={sponserBankCodeValue}
+                  size="small"
+                  getOptionLabel={(option) => option.name}
+                  id="controllable-states-demo"
+                  onChange={() => {}}
+                  options={sponserBankCodes}
+                  // sx={{ maxWidth: 300 }}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Sponser Bank Code" />
+                  )}
+                />
               </Stack>
-            </FormControl>
+            </Grid>
+
+            <Grid id='con3Sub3' item xs={4}>
+              <Stack spacing={1}>
+                <TextField
+                  id="standard-basic"
+                  label="Date On Mandate"
+                  variant="filled"
+                  type="date"
+                  size="small"
+                />
+                <Autocomplete
+                  value={unityCodeValue}
+                  size="small"
+                  getOptionLabel={(option) => option.name}
+                  id="controllable-states-demo"
+                  onChange={() => {}}
+                  options={unityCodes}
+                  // sx={{ width: 300 }}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Unity Code" />
+                  )}
+                />
+              </Stack>
+            </Grid>
+          </Grid>
+
+          <Grid id='container4' container item spacing={1}>
+            <Grid id='con4Sub1' container item xs={12} alignItems='center'>
+              <Grid item xs={4}>
+                <Stack direction='row' spacing={1}>
+                  <FormControlLabel 
+                    control={
+                      <Checkbox 
+                        size="small"
+                      />
+                    } 
+                    value='Create'
+                    label="Create" 
+                  />
+                  <FormControlLabel 
+                    control={
+                      <Checkbox 
+                        size="small"
+                      />
+                    } 
+                    value='Modify'
+                    label="Modify" 
+                  />
+                  <FormControlLabel 
+                    control={
+                      <Checkbox 
+                        size="small"
+                      />
+                    }
+                    value='Cancel' 
+                    label="Cancel" 
+                  />
+                </Stack>
+              </Grid>
+              <Grid item xs={8}>
+                <TextField
+                  fullWidth
+                  id="standard-basic"
+                  label="I/We hearby Authorize"
+                  variant="filled"
+                  type="text"
+                  size="small"
+                />
+              </Grid>
+            </Grid>
+            <Grid id='con4Sub2' container item xs={12}>
+              <FormControl>
+                <Stack direction='row' alignItems='center' spacing={2}>
+                  <FormLabel id="demo-radio-buttons-group-label">To Debit</FormLabel>
+                  <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    defaultValue="female"
+                    name="radio-buttons-group"
+                    >
+                    <Stack direction='row'>
+                      <FormControlLabel value="SB" control={<Radio size="small"/>} label="SB" />
+                      <FormControlLabel value="CA" control={<Radio size="small"/>} label="CA" />
+                      <FormControlLabel value="CC" control={<Radio size="small"/>} label="CC" />
+                      <FormControlLabel value="SB-NRE" control={<Radio size="small"/>} label="SB-NRE" />
+                      <FormControlLabel value="SB-NRO" control={<Radio size="small"/>} label="SB-NRO" />
+                      <FormControlLabel value="Other" control={<Radio size="small"/>} label="Other" />
+                    </Stack>
+                  </RadioGroup>
+                </Stack>
+              </FormControl>
+            </Grid>
+          </Grid>
+
+          <Grid id='container5' container item alignItems='center'>
+
+            <TextField
+              fullWidth
+              id="standard-basic"
+              label="Bank A/C Number"
+              variant="filled"
+              type="number"
+              size="small"
+            />
+          </Grid>
+
+          <Grid id='container6' container item spacing={1}>
+
+            {/* <Stack direction='row' alignItems='center' spacing={2}> */}
+            <Grid item xs={4}>
+              <TextField
+                fullWidth
+                id="standard-basic"
+                label="With Bank"
+                variant="filled"
+                type="text"
+                size="small"
+                />
+            </Grid>
+            <Grid item xs={4}>
+              <TextField
+                fullWidth
+                id="standard-basic"
+                label="IFSC"
+                variant="filled"
+                type="text"
+                size="small"
+                onClick={handleClickOpenAddUser}
+              />
+            </Grid>
+             
+            <Grid item xs={4}>
+              <Stack direction='row' alignItems='center' spacing={1}>
+                <Typography>
+                  OR
+                </Typography>
+                <TextField
+                  fullWidth
+                  id="standard-basic"
+                  label="MICR"
+                  variant="filled"
+                  type="number"
+                  size="small"
+                  onClick={handleClickOpenAddUser}
+                />
+                </Stack>
+            </Grid>
+            {/* </Stack> */}
+          </Grid>
+
+          <Grid id='container7' container item spacing={1}>
+            <Grid item xs={8}>
+              <TextField
+                fullWidth
+                disabled
+                id="standard-basic"
+                label="Amount in Word"
+                variant="filled"
+                type="text"
+                size="small"
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <TextField
+                fullWidth
+                id="standard-basic"
+                label="Amount"
+                variant="filled"
+                type="number"
+                size="small"
+              />
+            </Grid>
+          </Grid>
+
+          <Grid id='container8' container item>
+            <Stack direction='column'>
+              <FormControl>
+                <Stack direction='row' alignItems='center' spacing={2}>
+                  <FormLabel id="demo-radio-buttons-group-label">Frequency</FormLabel>
+                  <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    defaultValue="female"
+                    name="radio-buttons-group"
+                    >
+                    <Stack direction='row'>
+                      <FormControlLabel value="Monthly" control={<Radio size="small" />} label="Monthly" />
+                      <FormControlLabel value="Quarterly" control={<Radio size="small"/>} label="Quarterly" />
+                      <FormControlLabel value="Half-Yearly" control={<Radio size="small"/>} label="Half-Yearly" />
+                      <FormControlLabel value="Yearly" control={<Radio size="small" />} label="Yearly" />
+                      <FormControlLabel value="As & When Presented" control={<Radio size="small"/>} label="As & When Presented" />
+                    </Stack>
+                  </RadioGroup>
+                </Stack>
+              </FormControl>
+
+              <FormControl>
+                <Stack direction='row' alignItems='center' spacing={2}>
+                  <FormLabel id="demo-radio-buttons-group-label">Debit Type</FormLabel>
+                  <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    defaultValue="female"
+                    name="radio-buttons-group"
+                    >
+                    <Stack direction='row'>
+                      <FormControlLabel value="Fixed Amount" control={<Radio size="small"/>} label="Fixed Amount" />
+                      <FormControlLabel value="Maximun Amount" control={<Radio size="small"/>} label="Maximun Amount" />
+                      <FormControlLabel value="Half-Yearly" control={<Radio size="small"/>} label="Half-Yearly" />
+                      <FormControlLabel value="Yearly" control={<Radio size="small"/>} label="Yearly" />
+                      <FormControlLabel value="As & When Presented" control={<Radio size="small"/>} label="As & When Presented" />
+                    </Stack>
+                  </RadioGroup>
+                </Stack>
+              </FormControl>
+
+            </Stack>
+          </Grid>
+
+          <Grid id='container9' container item spacing={1}>
+            <Grid item xs={8}>
+              <TextField
+                fullWidth
+                id="standard-basic"
+                label="Reference 1"
+                variant="filled"
+                type="number"
+                size="small"
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <TextField
+                fullWidth
+                id="standard-basic"
+                label="Phone Number"
+                variant="filled"
+                type="number"
+                size="small"
+              />
+            </Grid>
+          </Grid>
+
+          <Grid id='container10' container item spacing={1}>
+            <Grid item xs={8}>
+              <TextField
+                fullWidth
+                id="standard-basic"
+                label="Reference 2"
+                variant="filled"
+                type="number"
+                size="small"
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <TextField
+                fullWidth
+                id="standard-basic"
+                label="Email ID"
+                variant="filled"
+                type="email"
+                size="small"
+              />
+            </Grid>
+          </Grid>
+
+          <Grid id='container11' container item>
+            <TextField
+              fullWidth
+              id="standard-basic"
+              label="Reference 3"
+              variant="filled"
+              type="number"
+              size="small"
+            />
+          </Grid>
+
+          <Grid id='container12' container item>
+            <Typography variant="body2">
+              I agree for the debit of mandate processing charges by the bank whom
+              I am authorizing to debit my account as per latest schedule of
+              charges of bank.
+            </Typography>
+          </Grid>
+
+          <Grid id='container13' container item>
+            <Typography variant="body1">Period</Typography>
+          </Grid>
+
+          <Grid id='container14' container item alignItems='start' spacing={1}>
+            <Grid id='con14Sub1' container item xs={3}>
+              {/* <Stack> */}
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  id="standard-basic"
+                  label="From"
+                  variant="filled"
+                  type="date"
+                  size="small"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  id="standard-basic"
+                  label="To"
+                  variant="filled"
+                  type="date"
+                  size="small"
+                />
+              </Grid>               
+              <Grid item xs={12}>
+                <Stack direction='row' alignItems='center' spacing={2}>
+                  <Typography>Or</Typography>
+                  <FormControlLabel control={<Checkbox defaultChecked />} label="Until Cancelled" />
+                </Stack>
+              </Grid>
+              {/* </Stack> */}
+            </Grid>
+
+            <Grid id='con14Sub2' container item xs={3}>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  id="standard-basic"
+                  label="Sign. Primary Acc. Holder"
+                  variant="filled"
+                  type="text"
+                  size="small"
+                />
+                <Typography variant="body2">
+                  1. Name as in Bank Records
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid id='con14Sub3' container item xs={3}>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  id="standard-basic"
+                  label="Sign. Secondary Acc. Holder"
+                  variant="filled"
+                  type="text"
+                  size="small"
+                />
+                <Typography variant="body2">
+                  1. Name as in Bank Records
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid id='con14Sub4' container item xs={3}>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  id="standard-basic"
+                  label="Sign. Tertiary Acc. Holder"
+                  variant="filled"
+                  type="text"
+                  size="small"
+                />
+                <Typography variant="body2">
+                  1. Name as in Bank Records
+                </Typography>
+              </Grid>
+            </Grid>
+          </Grid>
+
+          <Grid id='container15' container item>
+            <Typography variant="body2">
+              This is to confirm that declaration has been carefully read,
+              understood and made by me/us. I'm authorizing the user
+              Entity/Corporate to debit my account based on the instructions as
+              agreed and signed by me. I've understood that I am authorized to
+              cancel/amend this mandate by appropriately communicating the
+              cancellation/amendment request to the User/Entity/Corporate or the
+              bank where I've authorized the debit.
+            </Typography>
+          </Grid>
+          <Grid id='btnContainer' container item>
+            <Button>Save</Button>
           </Grid>
         </Grid>
-
-        <Grid id='container5' container alignItems='center'>
-
-          <TextField
-            fullWidth
-            id="standard-basic"
-            label="Bank A/C Number"
-            variant="standard"
-            type="number"
-          />
-        </Grid>
-
-        <Grid id='container6' container alignItems='center'>
-
-          <Stack direction='row' alignItems='center' spacing={2}>
-            <TextField
-              fullWidth
-              id="standard-basic"
-              label="With Bank"
-              variant="standard"
-              type="text"
-              value={formData.withBank}
-              onChange={handleOnChange}
-            />
-
-            <TextField
-              fullWidth
-              id="standard-basic"
-              label="IFSC"
-              variant="standard"
-              type="text"
-              onClick={() => {
-                setShow_IFSC_ValidationForm(true);
-              }}
-            />
-            <Typography>
-              OR
-            </Typography>
-
-            <TextField
-              fullWidth
-              id="standard-basic"
-              label="MICR"
-              variant="standard"
-              type="number"
-              onClick={() => {
-                setShow_IFSC_ValidationForm(true);
-              }}
-            />
-          </Stack>
-        </Grid>
-
-        <Grid id='container7' container alignItems='center'>
-
-          <Stack direction='row'>
-            <TextField
-              fullWidth
-              disabled
-              id="standard-basic"
-              label="Amount in Word"
-              variant="standard"
-              type="text"
-            />
-            <TextField
-              fullWidth
-              id="standard-basic"
-              label="Amount"
-              variant="standard"
-              type="number"
-            />
-          </Stack>
-        </Grid>
-
-        <div id={style.container8} className={style.container}>
-          <label id={style.con8Sub1}>
-            <p>Frequency</p>
-
-            <div id={style.frequencyInputCon8}>
-              <label>
-                <input
-                  type="radio"
-                  name="frequency"
-                  id="Monthly"
-                  value="Monthly"
-                  checked={formData.frequency === "Monthly"}
-                  onChange={handleOnChange}
-                />
-                <p>Monthly</p>
-              </label>
-
-              <label>
-                <input
-                  type="radio"
-                  name="frequency"
-                  id="Quarterly"
-                  value="Quarterly"
-                  checked={formData.frequency === "Quarterly"}
-                  onChange={handleOnChange}
-                />
-                <p>Quarterly</p>
-              </label>
-
-              <label>
-                <input
-                  type="radio"
-                  name="frequency"
-                  id="Half-Yearly"
-                  value="Half-Yearly"
-                  checked={formData.frequency === "Half-Yearly"}
-                  onChange={handleOnChange}
-                />
-                <p>Half-Yearly</p>
-              </label>
-
-              <label>
-                <input
-                  type="radio"
-                  name="frequency"
-                  id="Yearly"
-                  value="Yearly"
-                  checked={formData.frequency === "Yearly"}
-                  onChange={handleOnChange}
-                />
-                <p>Yearly</p>
-              </label>
-
-              <label>
-                <input
-                  type="radio"
-                  name="frequency"
-                  id="As&WhenPresented"
-                  value="As & When Presented"
-                  checked={formData.frequency === "As & When Presented"}
-                  onChange={handleOnChange}
-                />
-                <p>As & When Presented</p>
-              </label>
-            </div>
-          </label>
-
-          <label id={style.con8Sub2}>
-            <p>Debit Type</p>
-
-            <div id={style.debitTypeCon8}>
-              <label>
-                <input
-                  type="radio"
-                  name="debitType"
-                  id="FixedAmount"
-                  value="Fixed Amount"
-                  checked={formData.debitType === "Fixed Amount"}
-                  onChange={handleOnChange}
-                />
-                <p>Fixed Amount</p>
-              </label>
-
-              <label>
-                <input
-                  type="radio"
-                  name="debitType"
-                  id="MaximunAmount"
-                  value="Maximun Amount"
-                  checked={formData.debitType === "Maximun Amount"}
-                  onChange={handleOnChange}
-                />
-                <p>Maximun Amount</p>
-              </label>
-            </div>
-          </label>
-        </div>
-
-        <div id={style.container9} className={style.container}>
-          <label id={style.con9Sub1}>
-            <p>Reference 1</p>
-            <input
-              type="number"
-              name="reference1"
-              id="reference1"
-              value={formData.reference1}
-              onChange={handleOnChange}
-            />
-          </label>
-
-          <label id={style.con9Sub2}>
-            <p>Phone Number</p>
-            <input
-              type="number"
-              name="phoneNumber"
-              id="phoneNumber"
-              value={formData.phoneNumber}
-              onChange={handleOnChange}
-            />
-          </label>
-        </div>
-
-        <div id={style.container10} className={style.container}>
-          <label id={style.con10Sub1}>
-            <p>Reference 2</p>
-            <input
-              type="number"
-              name="reference2"
-              id="reference2"
-              value={formData.reference2}
-              onChange={handleOnChange}
-            />
-          </label>
-
-          <label id={style.con10Sub2}>
-            <p>Email ID</p>
-            <input
-              type="email"
-              name="emailID"
-              id="emailID"
-              value={formData.emailID}
-              onChange={handleOnChange}
-            />
-          </label>
-        </div>
-
-        <div id={style.container11} className={style.container}>
-          <label>
-            <p>Reference 3</p>
-            <input
-              type="number"
-              name="reference3"
-              id="reference3"
-              value={formData.reference3}
-              onChange={handleOnChange}
-            />
-          </label>
-        </div>
-
-        <div id={style.container12}>
-          <p>
-            I agree for the debit of mandate processing charges by the bank whom
-            I am authorizing to debit my account as per latest schedule of
-            charges of bank.
-          </p>
-        </div>
-
-        <div id={style.container13} className={style.container}>
-          <h3>Period</h3>
-        </div>
-
-        <div id={style.container14} className={style.container}>
-          <div id={style.con14Sub1}>
-            <label id={style.periodDateInputLabel}>
-              <p>From</p>
-
-              <input
-                type="date"
-                name="periodFrom"
-                id="periodFrom"
-                value={formData.periodFrom}
-                onChange={handleOnChange}
-              />
-            </label>
-
-            <label id={style.periodDateInputLabel}>
-              <p>To</p>
-              <input
-                type="date"
-                name="periodTo"
-                id="periodTo"
-                value={formData.periodTo}
-                onChange={handleOnChange}
-              />
-            </label>
-
-            <label>
-              <p>Or</p>
-
-              <label>
-                <input
-                  type="checkbox"
-                  name="untilCancelled"
-                  id="untilCancelled"
-                  value={formData.untilCancelled}
-                  onChange={handleOnChange}
-                />
-                <span>Until Cancelled</span>
-              </label>
-            </label>
-          </div>
-
-          <label id={style.con14Sub2}>
-            <p>Sign. Primary Acc. Holder</p>
-
-            <input
-              type="text"
-              name="signPrimaryAccHolder"
-              id="signPrimaryAccHolder"
-              value={formData.signPrimaryAccHolder}
-              onChange={handleOnChange}
-            />
-
-            <p>1. Name as in Bank Records</p>
-          </label>
-
-          <label id={style.con14Sub3}>
-            <p>Sign. Secondary Acc. Holder</p>
-            <input
-              type="text"
-              name="signSecondaryAccHolder"
-              id="signSecondaryAccHolder"
-              value={formData.signSecondaryAccHolder}
-              onChange={handleOnChange}
-            />
-            <p>2. Name as in Bank Records</p>
-          </label>
-
-          <label id={style.con14Sub4}>
-            <p>Sign. Tertiary Acc. Holder</p>
-            <input
-              type="text"
-              name="signTertiaryAccHolder"
-              id="signTertiaryAccHolder"
-              value={formData.signTertiaryAccHolder}
-              onChange={handleOnChange}
-            />
-            <p>3. Name as in Bank Records</p>
-          </label>
-        </div>
-
-        <div id={style.container15}>
-          <p>
-            This is to confirm that declaration has been carefully read,
-            understood and made by me/us. I'm authorizing the user
-            Entity/Corporate to debit my account based on the instructions as
-            agreed and signed by me. I've understood that I am authorized to
-            cancel/amend this mandate by appropriately communicating the
-            cancellation/amendment request to the User/Entity/Corporate or the
-            bank where I've authorized the debit.
-          </p>
-        </div>
-        <div id={style.btnContainer} className={style.container}>
-          <button>Save</button>
-        </div>
       </FormGroup>
 
-      {show_IFSC_ValidationForm ? (
-        <div id={style.IFSC_ValidationFormContainer}>
-          <IFSCValidation
-            setShow_IFSC_ValidationForm={setShow_IFSC_ValidationForm}
-          />
-        </div>
-      ) : null}
+      <Dialog
+        fullScreen
+        open={show_IFSC_ValidationForm}
+        onClose={handleCloseAddUser}
+        TransitionComponent={Transition}
+      >
+        <IFSCValidation handleCloseAddUser={handleCloseAddUser}/>
+      </Dialog>
     </Container>
   );
 }

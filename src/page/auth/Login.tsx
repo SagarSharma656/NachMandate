@@ -1,10 +1,13 @@
 import { useState } from "react";
 import style from "../../styles/Login.module.css";
 import "../../index.css";
-import { Container, Grid, Stack, TextField } from "@mui/material";
+import {  Container, Grid, Stack, TextField,  } from "@mui/material";
 import CachedIcon from '@mui/icons-material/Cached';
 
 function Login(props: any) {
+
+  
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -68,11 +71,11 @@ function Login(props: any) {
   }
 
   return (
-    <Container>
+    <Container sx={{minWidth:'100%'}}>
       <Grid>
         <Stack direction='column' justifyContent='space-between'>
             <Grid>
-                <Grid sx={{height:'40px' ,backgroundColor: 'rgb(58, 196, 125)'}}>
+                <Grid sx={{height:'65px' ,backgroundColor: 'rgb(58, 196, 125)'}}>
                     <img src="src/assets/logo.png" alt="logo" />
                 </Grid>
 

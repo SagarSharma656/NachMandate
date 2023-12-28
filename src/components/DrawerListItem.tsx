@@ -96,7 +96,7 @@ function DrawerListItem  (props: DrawerListItemProps) {
                         width: "100%",
                         height: '100%',
                         borderRadius: '5px',
-                        backgroundColor: sublinkBg === sublink ? 'rgb(210, 238, 255)' : 'red',
+                        backgroundColor: sublinkBg === sublink ? 'rgb(210, 238, 255)' : 'transparent',
                         justifyContent: open ? 'initial' : 'center',
                         ml: 5,
                         px: 0,
