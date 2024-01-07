@@ -154,3 +154,18 @@ export interface MandateFormDataObject {
   signSecondaryAccHolder: string;
   signTertiaryAccHolder: string;
 };
+
+
+export interface UnAssignedMandatesData {
+  mandateStatus: string;
+  mandateId: number;
+  reference1: number;
+  customerName: string;
+  customerAccountNo: number;
+}
+export interface UnAssignedMandatesHeadCell {
+  disablePadding: boolean;
+  id: keyof UnAssignedMandatesData;
+  label: string;
+  numeric: boolean;
+}

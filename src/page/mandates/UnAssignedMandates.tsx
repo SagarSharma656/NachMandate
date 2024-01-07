@@ -1,17 +1,18 @@
-import { Button, FormControl, FormGroup, Grid, Stack, Typography } from "@mui/material"
+import {  Checkbox, FormControlLabel, Paper,  Switch, Table, TableBody, TableCell, TableContainer, TablePagination, TableRow } from "@mui/material"
 import Box from "@mui/material/Box"
-import Container from "@mui/material/Container"
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+// import { LocalizationProvider } from "@mui/x-date-pickers";
+// import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
+// import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import React from "react";
-import { Order } from "../../utils/types";
+import { Order, UnAssignedMandatesData } from "../../utils/types";
+import { getComparator, stableSort } from "../../utils/tablefunction";
+import { EnhancedTableHead, EnhancedTableToolbar, rows } from "./UnAssignedMandatesHead";
 
 
 function UnAssignedMandates() {
 
   const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<keyof UserData>('srno');
+  const [orderBy, setOrderBy] = React.useState<keyof UnAssignedMandatesData>('mandateId');
   const [selected, setSelected] = React.useState<readonly number[]>([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
@@ -19,7 +20,7 @@ function UnAssignedMandates() {
 
   const handleRequestSort = (
     _event: React.MouseEvent<unknown>,
-    property: keyof UserData,
+    property: keyof UnAssignedMandatesData,
   ) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -28,7 +29,7 @@ function UnAssignedMandates() {
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelected = rows.map((n) => n.srno);
+      const newSelected = rows.map((n) => n.mandateId);
       setSelected(newSelected);
       return;
     }
@@ -87,7 +88,7 @@ function UnAssignedMandates() {
   return (
     <Box sx={{margin: 'auto'}}>
     <Paper>
-      <EnhancedTableToolbar numSelected={selected.length} findUser={findUser}/>
+      <EnhancedTableToolbar numSelected={selected.length}/>
       <TableContainer>
         <Table
           // sx={{ minWidth: 750 }}
@@ -104,17 +105,17 @@ function UnAssignedMandates() {
           />
           <TableBody>
             {visibleRows.map((row, index) => {
-              const isItemSelected = isSelected(row.srno);
+              const isItemSelected = isSelected(row.mandateId);
               const labelId = `enhanced-table-checkbox-${index}`;
 
               return (
                 <TableRow
                   hover
-                  onClick={(event) => handleClick(event, row.srno)}
+                  onClick={(event) => handleClick(event, row.mandateId)}
                   role="checkbox"
                   aria-checked={isItemSelected}
                   tabIndex={-1}
-                  key={row.srno}
+                  key={row.mandateId}
                   selected={isItemSelected}
                   sx={{ cursor: 'pointer' }}
                 >
@@ -131,25 +132,15 @@ function UnAssignedMandates() {
                     component="th"
                     id={labelId}
                     scope="row"
-                    padding="none"
+                    padding="normal"
+                    align="left"
                   >
-                    {row.srno}
+                    {row.mandateStatus}
                   </TableCell>
-                  <TableCell align="right">{row.userType}</TableCell>
-                  <TableCell align="right">{row.userName}</TableCell>
-                  <TableCell align="right">{row.emailId}</TableCell>
-                  <TableCell align="right">{row.phoneNo}</TableCell>
-                  <TableCell align="right">{row.productName}</TableCell>
-                  <TableCell align="right">{row.branchName}</TableCell>
-                  <TableCell align="right">{row.lastLogin}</TableCell>
-                  <TableCell align="right">{row.createdBy}</TableCell>
-                  <TableCell align="right">{row.createdOn}</TableCell>
-                  <TableCell align="right">{row.updatedBy}</TableCell>
-                  <TableCell align="right">{row.updatedOn}</TableCell>
-                  <TableCell align="right">{row.vendorUser}</TableCell>
-                  <TableCell align="right">{row.accountBlocked}</TableCell>
-                  <TableCell align="right">{row.status}</TableCell>
-                  <TableCell align="right">{row.mobileApp}</TableCell>
+                  <TableCell align="left">{row.mandateId}</TableCell>
+                  <TableCell align="left">{row.reference1}</TableCell>
+                  <TableCell align="left">{row.customerName}</TableCell>
+                  <TableCell align="left">{row.customerAccountNo}</TableCell>
                 </TableRow>
               );
             })}
