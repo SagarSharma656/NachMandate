@@ -169,3 +169,158 @@ export interface UnAssignedMandatesHeadCell {
   label: string;
   numeric: boolean;
 }
+
+export interface InProcessPhysicalMandateData {
+  mandateStatus: string;
+  mandateId: number;
+  reference1: number;
+  customerName: string;
+  customerAccountNo: number;
+  amount: number;
+  amountInWord: string;
+}
+export interface InProcessPhysicalMandateHeadCell {
+  disablePadding: boolean;
+  id: keyof InProcessPhysicalMandateData;
+  label: string;
+  numeric: boolean;
+}
+
+export interface PendingForBatchCreationData {
+  mandateStatus: string;
+  mandateId: number;
+  reference1: number;
+  customerName: string;
+  customerAccountNo: number;
+  amount: number;
+  amountInWord: string;
+  IFSC_MICR: string;
+  customerBank: string;
+  sponsorBank: string;
+  dateOnMandate: string;
+  formDate: string;
+  debitTo: string;
+  debitType: string;
+  frequency: string;
+  createdOn: string;
+  createdBy: string;
+  product: string;
+  branch: string;
+  categoryCode: string;
+  utilityCode: string;
+}
+export interface PendingForBatchCreationHeadCell {
+  disablePadding: boolean;
+  id: keyof PendingForBatchCreationData;
+  label: string;
+  numeric: boolean;
+}
+
+export interface UnapprovedMandatesData {
+  mandateStatus: string;
+  mandateId: number;
+  reference1: number;
+  customerName: string;
+  customerAccountNo: number;
+  amount: number;
+  amountInWord: string;
+  IFSC_MICR: string;
+  customerBank: string;
+  sponsorBank: string;
+  dateOnMandate: string;
+  formDate: string;
+  debitTo: string;
+  debitType: string;
+  frequency: string;
+  createdOn: string;
+  createdBy: string;
+  product: string;
+  branch: string;
+  categoryCode: string;
+  utilityCode: string;
+}
+export interface UnapprovedMandatesHeadCell {
+  disablePadding: boolean;
+  id: keyof UnapprovedMandatesData;
+  label: string;
+  numeric: boolean;
+}
+
+export interface ApprovedMandatesData {
+  mandateStatus: string;
+  mandateId: number;
+  reference1: number;
+  customerName: string;
+  customerAccountNo: number;
+  amount: number;
+  amountInWord: string;
+  IFSC_MICR: string;
+  customerBank: string;
+  sponsorBank: string;
+  dateOnMandate: string;
+  formDate: string;
+  debitTo: string;
+  debitType: string;
+  frequency: string;
+  createdOn: string;
+  createdBy: string;
+  product: string;
+  branch: string;
+  categoryCode: string;
+  utilityCode: string;
+}
+export interface ApprovedMandatesHeadCell {
+  disablePadding: boolean;
+  id: keyof ApprovedMandatesData;
+  label: string;
+  numeric: boolean;
+}
+
+export interface PhysicalBatchsData {
+  srno: number;
+  fileNo: number;
+  totalNoOfRecordsInFile: number;
+  createdOn: string;
+  createdBy: string;
+  download: string;
+  action: string;
+}
+export interface PhysicalBatchsHeadCell {
+  disablePadding: boolean;
+  id: keyof PhysicalBatchsData;
+  label: string;
+  numeric: boolean;
+}
+
+export interface SentToBankData {
+  mandateStatus: string;
+  mandateId: number;
+  fileNo: number;
+  referecne1: number;
+  customerName: string;
+  customerAccountNo: number;
+  amount: number;
+  amountInWords: string;
+  IFSC_MICR: string;
+  customerBank: string;
+  sponsorBank: string;
+  dateOnMandate: string;
+  formDate: string;
+  debitTo: string;
+  debitType: string;
+  frequency: string;
+  createdOn: string;
+  createdBy: string;
+  product: string;
+  branch: string;
+  categoryCode: string;
+  fileId: string;
+  initiatedToBankDateAndTime: string;
+  utilityCode: string;
+}
+export interface SentToBankHeadCell {
+  disablePadding: boolean;
+  id: keyof SentToBankData;
+  label: string;
+  numeric: boolean;
+}

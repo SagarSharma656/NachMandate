@@ -3,9 +3,9 @@ import { alpha, styled } from "@mui/material/styles";
 import TableHead from "@mui/material/TableHead";
 import {
   Order,
-  UnAssignedMandatesData,
-  UnAssignedMandatesHeadCell,
-} from "../../utils/types";
+  PhysicalBatchsData,
+  PhysicalBatchsHeadCell,
+} from "../../../utils/types";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import Checkbox from "@mui/material/Checkbox";
@@ -23,66 +23,88 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import SearchIcon from "@mui/icons-material/Search";
 
 function createData(
-  mandateStatus: string,
-  mandateId: number,
-  reference1: number,
-  customerName: string,
-  customerAccountNo: number
-): UnAssignedMandatesData {
+    srno: number,
+    fileNo: number,
+    totalNoOfRecordsInFile: number,
+    createdOn: string,
+    createdBy: string,
+    download: string,
+    action: string,
+): PhysicalBatchsData {
   return {
-    mandateStatus,
-    mandateId,
-    reference1,
-    customerName,
-    customerAccountNo,
+    srno,
+    fileNo,
+    totalNoOfRecordsInFile,
+    createdOn,
+    createdBy,
+    download,
+    action,
   };
 }
 
 export const rows = [
-  createData("Mandate Status", 1, 123456789, "Customer Name", 123456789),
-  createData("Mandate Status", 2, 123456789, "Customer Name", 123456789),
-  createData("Mandate Status", 3, 123456789, "Customer Name", 123456789),
-  createData("Mandate Status", 4, 123456789, "Customer Name", 123456789),
+    createData(1, 11, 21, 'created on', 'cretaed by', 'download', 'action'),
+    createData(2, 12, 22, 'created on', 'cretaed by', 'download', 'action'),
+    createData(3, 13, 23, 'created on', 'cretaed by', 'download', 'action'),
+    createData(4, 14, 24, 'created on', 'cretaed by', 'download', 'action'),
+    createData(5, 15, 25, 'created on', 'cretaed by', 'download', 'action'),
+    createData(6, 16, 26, 'created on', 'cretaed by', 'download', 'action'),
+    createData(7, 17, 27, 'created on', 'cretaed by', 'download', 'action'),
+    createData(8, 18, 28, 'created on', 'cretaed by', 'download', 'action'),
+    createData(9, 19, 29, 'created on', 'cretaed by', 'download', 'action'),
+    createData(10, 20, 30, 'created on', 'cretaed by', 'download', 'action'),
 ];
 
-export const headCells: readonly UnAssignedMandatesHeadCell[] = [
+export const headCells: readonly PhysicalBatchsHeadCell[] = [
   {
-    id: "mandateStatus",
+    id: "srno",
     numeric: true,
     disablePadding: false,
-    label: "Mandate Status",
+    label: "Sr No",
   },
   {
-    id: "mandateId",
+    id: "fileNo",
     numeric: true,
     disablePadding: false,
-    label: "Mandate ID",
+    label: "File No",
   },
   {
-    id: "reference1",
+    id: "totalNoOfRecordsInFile",
     numeric: true,
     disablePadding: false,
-    label: "Reference 1",
+    label: "Total No Of Records In File",
   },
   {
-    id: "customerName",
+    id: "createdOn",
     numeric: true,
     disablePadding: false,
-    label: "Customer Name",
+    label: "Created On",
   },
   {
-    id: "customerAccountNo",
+    id: "createdBy",
     numeric: true,
     disablePadding: false,
-    label: "Customer Account No.",
+    label: "Created By",
   },
+  {
+    id: "download",
+    numeric: true,
+    disablePadding: false,
+    label: "Download",
+  },
+  {
+    id: "action",
+    numeric: true,
+    disablePadding: false,
+    label: "Action",
+  }
 ];
 
 interface EnhancedTableProps {
   numSelected: number;
   onRequestSort: (
     event: React.MouseEvent<unknown>,
-    property: keyof UnAssignedMandatesData
+    property: keyof PhysicalBatchsData
   ) => void;
   onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
   order: Order;
@@ -100,7 +122,7 @@ export function EnhancedTableHead(props: EnhancedTableProps) {
     onRequestSort,
   } = props;
   const createSortHandler =
-    (property: keyof UnAssignedMandatesData) =>
+    (property: keyof PhysicalBatchsData) =>
     (event: React.MouseEvent<unknown>) => {
       onRequestSort(event, property);
     };
@@ -227,7 +249,7 @@ export function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
                   id="tableTitle"
                   component="div"
                 >
-                  User Creation
+                  Physical Batches
                 </Typography>
               )}
 

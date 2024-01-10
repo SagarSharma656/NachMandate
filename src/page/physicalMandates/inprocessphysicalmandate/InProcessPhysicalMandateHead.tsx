@@ -3,9 +3,9 @@ import { alpha, styled } from "@mui/material/styles";
 import TableHead from "@mui/material/TableHead";
 import {
   Order,
-  UnAssignedMandatesData,
-  UnAssignedMandatesHeadCell,
-} from "../../utils/types";
+  InProcessPhysicalMandateData,
+  InProcessPhysicalMandateHeadCell,
+} from "../../../utils/types";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import Checkbox from "@mui/material/Checkbox";
@@ -27,25 +27,29 @@ function createData(
   mandateId: number,
   reference1: number,
   customerName: string,
-  customerAccountNo: number
-): UnAssignedMandatesData {
+  customerAccountNo: number,
+  amount: number,
+  amountInWord: string,
+): InProcessPhysicalMandateData {
   return {
     mandateStatus,
     mandateId,
     reference1,
     customerName,
     customerAccountNo,
+    amount,
+    amountInWord,
   };
 }
 
 export const rows = [
-  createData("Mandate Status", 1, 123456789, "Customer Name", 123456789),
-  createData("Mandate Status", 2, 123456789, "Customer Name", 123456789),
-  createData("Mandate Status", 3, 123456789, "Customer Name", 123456789),
-  createData("Mandate Status", 4, 123456789, "Customer Name", 123456789),
+  createData("Mandate Status", 1, 123456789, "Customer Name", 123456789, 100, 'One Hundred'),
+  createData("Mandate Status", 2, 123456789, "Customer Name", 123456789, 100, 'One Hundred'),
+  createData("Mandate Status", 3, 123456789, "Customer Name", 123456789, 100, 'One Hundred'),
+  createData("Mandate Status", 4, 123456789, "Customer Name", 123456789, 100, 'One Hundred'),
 ];
 
-export const headCells: readonly UnAssignedMandatesHeadCell[] = [
+export const headCells: readonly InProcessPhysicalMandateHeadCell[] = [
   {
     id: "mandateStatus",
     numeric: true,
@@ -76,13 +80,25 @@ export const headCells: readonly UnAssignedMandatesHeadCell[] = [
     disablePadding: false,
     label: "Customer Account No.",
   },
+  {
+    id: "amount",
+    numeric: true,
+    disablePadding: false,
+    label: "Amount",
+  },
+  {
+    id: "amountInWord",
+    numeric: true,
+    disablePadding: false,
+    label: "Amount In Word",
+  },
 ];
 
 interface EnhancedTableProps {
   numSelected: number;
   onRequestSort: (
     event: React.MouseEvent<unknown>,
-    property: keyof UnAssignedMandatesData
+    property: keyof InProcessPhysicalMandateData
   ) => void;
   onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
   order: Order;
@@ -100,7 +116,7 @@ export function EnhancedTableHead(props: EnhancedTableProps) {
     onRequestSort,
   } = props;
   const createSortHandler =
-    (property: keyof UnAssignedMandatesData) =>
+    (property: keyof InProcessPhysicalMandateData) =>
     (event: React.MouseEvent<unknown>) => {
       onRequestSort(event, property);
     };
@@ -227,7 +243,7 @@ export function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
                   id="tableTitle"
                   component="div"
                 >
-                  User Creation
+                  In Process Physical Mandate
                 </Typography>
               )}
 
