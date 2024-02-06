@@ -88,17 +88,24 @@ export default function AllUsers() {
     [order, orderBy, page, rowsPerPage],
   );
 
+  // const [searchRows, setSearchRows] = React.useState(visibleRows);
+
+
 
   function findUser(_event: any){
-    let searchInput = _event.target.value;
-    const sortedData = []
+    // let searchInput: any = _event.target.value;
+    // let afterSearch: any = [];
 
-    visibleRows.map((row)=>{
-      if(searchInput === row.userName){
-        console.log(row.userName);
-        sortedData.push(row);
-      }
-    });
+    // visibleRows.map((row)=>{
+    //   if(row.userName.search(searchInput)>=0){
+    //     afterSearch.push(row);
+    //   }
+    // });
+
+    // if(afterSearch.length > 0){
+    //   setSearchRows(afterSearch);
+    // }
+   
   }
 
   return (

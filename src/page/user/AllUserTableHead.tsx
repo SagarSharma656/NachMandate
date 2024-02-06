@@ -62,7 +62,7 @@ export const rows = [
   createData(
     1,
     "user type",
-    "user name 1",
+    "sagar",
     "email id",
     1234567890,
     "product name",
@@ -80,7 +80,7 @@ export const rows = [
   createData(
     2,
     "user type",
-    "user name 2",
+    "Sagar",
     "email id",
     1234567890,
     "product name",
