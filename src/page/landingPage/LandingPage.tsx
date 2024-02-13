@@ -94,7 +94,6 @@ import UPIPendingForExecution from "../upiPresentation/UPIPendingForExecution";
 import UPIBulkMandateCreation from "../upiBulk/UPIBulkMandateCreation";
 import BulkUPIVerification from "../upiBulk/BulkUPIVerification";
 
-
 const drawerWidth = 240;
 
 interface AppBarProps extends MuiAppBarProps {
@@ -128,14 +127,13 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-interface LandingPageProps{
+interface LandingPageProps {
   setIsLogin: any;
 }
 
-export default function LandingPage( props: LandingPageProps) {
+export default function LandingPage(props: LandingPageProps) {
+  const { setIsLogin } = props;
 
-  const {setIsLogin} = props;
-  
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -155,8 +153,8 @@ export default function LandingPage( props: LandingPageProps) {
 
         <LeftDrawer open={open} setOpen={setOpen} />
 
-        <Box component="main" sx={{flexGrow: 1, padding: 0}}>
-          <DrawerHeader/>
+        <Box component="main" sx={{ flexGrow: 1, padding: 0 }}>
+          <DrawerHeader style={{ minHeight: "42px" }} />
           <Box>
             <Routes>
               {/* <Route path='/' element={<MainScreen/>}> */}

@@ -10,6 +10,8 @@ import {
   Collapse,
   ListItemButton,
   Button,
+  styled,
+  AutocompleteProps,
 } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import LaunchIcon from "@mui/icons-material/Launch";
@@ -98,23 +100,21 @@ const months: Month[] = [
 ];
 
 function AnalysisTab() {
-
   const [monthValue, setMonthValue] = useState<Month | null>();
   const [openMandate, setOpenMendate] = useState(true);
   const [openPresentation, setOpenPresentation] = useState(true);
-  
-  function handleOpenMandate(){
+
+  function handleOpenMandate() {
     setOpenMendate(!openMandate);
   }
-  function handleOpenPresentation(){
+  function handleOpenPresentation() {
     setOpenPresentation(!openPresentation);
   }
 
   return (
     <Box>
-      <Grid sx={{ border: "0.1px solid lightgray"}}>
-       
-        <Grid sx={{ borderBottom: "0.1px solid lightgray", py: 0}}>
+      <Grid sx={{ border: "0.1px solid lightgray" }}>
+        <Grid sx={{ borderBottom: "0.1px solid lightgray", py: 0 }}>
           <Stack
             direction="row"
             display="flex"
@@ -123,13 +123,12 @@ function AnalysisTab() {
             paddingX={1}
             paddingY={0}
           >
-            <ListItemButton onClick={handleOpenMandate} sx={{width: '100%'}}>
-              <Typography sx={{fontSize: "12px"}}>
+            <ListItemButton onClick={handleOpenMandate} sx={{ width: "100%" }}>
+              <Typography sx={{ fontSize: "12px" }}>
                 Total Mandates: -
               </Typography>
             </ListItemButton>
 
-           
             <FormGroup>
               <Autocomplete
                 value={monthValue}
@@ -141,13 +140,12 @@ function AnalysisTab() {
                 sx={{ width: 300 }}
                 renderInput={(params) => (
                   <TextField {...params} label="Month" />
-                  )}
-                  />
+                )}
+              />
             </FormGroup>
-           
           </Stack>
         </Grid>
-      
+
         <Collapse in={openMandate} timeout="auto" unmountOnExit>
           <Grid container sx={{ px: 1, py: 2 }}>
             <Stack>
@@ -360,7 +358,6 @@ function AnalysisTab() {
               </Stack>
 
               <Grid>
-                
                 <Grid sx={{ my: 1, backgroundColor: "rgb(210, 238, 255)" }}>
                   <Typography sx={{ fontSize: "11px", color: "gray" }}>
                     Registered Mandate
@@ -491,7 +488,6 @@ function AnalysisTab() {
       </Grid>
 
       <Grid sx={{ border: "0.1px solid lightgray" }}>
-
         <Grid sx={{ borderBottom: "0.1px solid lightgray" }}>
           <Stack
             direction="row"
@@ -500,7 +496,10 @@ function AnalysisTab() {
             alignItems="center"
             paddingX={1}
           >
-            <ListItemButton sx={{width: '100%'}} onClick={handleOpenPresentation}>
+            <ListItemButton
+              sx={{ width: "100%" }}
+              onClick={handleOpenPresentation}
+            >
               <Typography sx={{ fontSize: "12px" }}>
                 Total Presentations: -
               </Typography>
@@ -521,7 +520,7 @@ function AnalysisTab() {
             </FormGroup>
           </Stack>
         </Grid>
-        
+
         <Collapse in={openPresentation} timeout="auto" unmountOnExit>
           <Grid container sx={{ px: 1, py: 2 }}>
             <Stack direction="row" flexWrap="wrap" gap={0.5}>
