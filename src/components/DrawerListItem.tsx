@@ -28,17 +28,17 @@ function DrawerListItem  (props: DrawerListItemProps) {
 
     if(link === 'DashBoard' || sublink === 'DashBoard' ){
       navigate('');
+      setSubLinkBg(sublinkName);
     }else{
       navigate(`/${linkName}/${sublinkName}`);
-    }
-    setSubLinkBg(sublinkName);
-   
+      setSubLinkBg(sublinkName);
+    }    
   }
 
   useEffect(()=>{
     handleClickOnSubLink('DashBoard', 'DahsBoard');
-   
-  },[])
+  }, [])
+
 
 
   const fontStyleOfLinks = {

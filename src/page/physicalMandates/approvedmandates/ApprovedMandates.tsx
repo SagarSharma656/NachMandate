@@ -1,18 +1,22 @@
+
+
+
+
 import {  Checkbox, FormControlLabel, Paper,  Switch, Table, TableBody, TableCell, TableContainer, TablePagination, TableRow } from "@mui/material"
 import Box from "@mui/material/Box"
 // import { LocalizationProvider } from "@mui/x-date-pickers";
 // import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
 // import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import React from "react";
-import { Order, UnAssignedMandatesData } from "../../utils/types";
-import { getComparator, stableSort } from "../../utils/tablefunction";
-import { EnhancedTableHead, EnhancedTableToolbar, rows } from "./UnAssignedMandatesHead";
+import { Order, ApprovedMandatesData } from "../../../utils/types";
+import { getComparator, stableSort } from "../../../utils/tablefunction";
+import { EnhancedTableHead, EnhancedTableToolbar, rows } from "./ApprovedMandatesHead";
 
 
-function UnAssignedMandates() {
+export default function ApprovedMandates() {
 
   const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<keyof UnAssignedMandatesData>('mandateId');
+  const [orderBy, setOrderBy] = React.useState<keyof ApprovedMandatesData>('mandateId');
   const [selected, setSelected] = React.useState<readonly number[]>([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
@@ -20,7 +24,7 @@ function UnAssignedMandates() {
 
   const handleRequestSort = (
     _event: React.MouseEvent<unknown>,
-    property: keyof UnAssignedMandatesData,
+    property: keyof ApprovedMandatesData,
   ) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -141,6 +145,22 @@ function UnAssignedMandates() {
                   <TableCell align="left">{row.reference1}</TableCell>
                   <TableCell align="left">{row.customerName}</TableCell>
                   <TableCell align="left">{row.customerAccountNo}</TableCell>
+                  <TableCell align="left">{row.amount}</TableCell>
+                  <TableCell align="left">{row.amountInWord}</TableCell>
+                  <TableCell align="left">{row.IFSC_MICR}</TableCell>
+                  <TableCell align="left">{row.customerBank}</TableCell>
+                  <TableCell align="left">{row.sponsorBank}</TableCell>
+                  <TableCell align="left">{row.dateOnMandate}</TableCell>
+                  <TableCell align="left">{row.formDate}</TableCell>
+                  <TableCell align="left">{row.debitTo}</TableCell>
+                  <TableCell align="left">{row.debitType}</TableCell>
+                  <TableCell align="left">{row.frequency}</TableCell>
+                  <TableCell align="left">{row.createdOn}</TableCell>
+                  <TableCell align="left">{row.createdBy}</TableCell>
+                  <TableCell align="left">{row.product}</TableCell>
+                  <TableCell align="left">{row.branch}</TableCell>
+                  <TableCell align="left">{row.categoryCode}</TableCell>
+                  <TableCell align="left">{row.utilityCode}</TableCell>
                 </TableRow>
               );
             })}
@@ -174,4 +194,3 @@ function UnAssignedMandates() {
   )
 }
 
-export default UnAssignedMandates

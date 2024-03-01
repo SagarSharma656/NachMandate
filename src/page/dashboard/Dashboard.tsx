@@ -1,17 +1,21 @@
 import { useState } from "react";
 import {
-  Container,
   Button,
   FormGroup,
   Grid,
   Stack,
   Autocomplete,
   TextField,
+  Box,
+  Tabs,
+  Tab,
 } from "@mui/material";
-import Analysis from "../../components/Analysis";
-import MandateSearch from "../../components/MandateSearch";
 import SearchIcon from '@mui/icons-material/Search';
-import { Year } from "../../utils/types";
+import { Bank, Year } from "../../utils/types";
+import React from "react";
+import { CustomTabPanel } from "./CustomTabPanel";
+import AnalysisTab from "../../components/AnalysisTab";
+import MandateSearchTab from "../../components/MandateSearchTab";
 
 const btnStyle = {
   fontSize: "10px",
@@ -19,25 +23,11 @@ const btnStyle = {
   py: "2px",
   outline: "none",
   height: "0",
-};
-
-const bigBtnStyle = {
-  width: "35%",
-  fontSize: "12px",
-  textAlign: "center",
-  backgroundColor: "rgb(205, 205, 205)",
-  color: "black",
-  marginRight: "5px",
-  border: "none",
-  py: "3px",
-  fontWeight: 600,
+  ":focus":{outline: 'none'}
 };
 
 
-interface Bank {
-  id: string;
-  name: string;
-}
+
 const banks: Bank[] = [
   {
     id: "1",
@@ -98,20 +88,31 @@ const years: Year[] = [
 ] 
 
 
+function a11yProps(index: number) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
+
 
 function Dashboard() {
   const [bankValue, setBankValue] = useState<Bank | null>();
 
   const [yearValue, setYearValue] = useState <Year | null>();
 
-  const [tab, setTab] = useState<string>("Analysis");
 
-  function handleClickOnTabBtn(tabName: string) {
-    setTab(tabName);
-  }
+  const [value, setValue] = React.useState(0);
+  
+  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+ 
+
+ 
 
   return (
-    <Container sx={{paddingTop: 1, maxWidth: '100% !important'}}>
+    <Box sx={{padding: 1}}>
       <Grid container justifyContent="space-between">
         <Grid item justifyContent="space-between">
           <Stack direction="row" spacing={1}>
@@ -159,44 +160,24 @@ function Dashboard() {
           <span>Search</span>
         </Button>
       </Grid>
-      <Grid container>
-        <Stack width="100%" direction="row">
-          <Button
-            sx={bigBtnStyle}
-            className={tab === "Analysis" ? "activeBtn" : ""}
-            onClick={() => {
-              handleClickOnTabBtn("Analysis");
-            }}
-          >
-            ANALYSIS
-          </Button>
+    
 
-          <Button
-            sx={bigBtnStyle}
-            className={tab === "Mandate Search" ? "activeBtn" : ""}
-            onClick={() => {
-              handleClickOnTabBtn("Mandate Search");
-            }}
-          >
-            MANDATE SEARCH
-          </Button>
-        </Stack>
-      </Grid>
-
-      <Grid
-        container
-        sx={{
-          width: "100%",
-          minHeight: "450px",
-          border: "0.1px solid lightgray",
-          padding: 1,
-          gap: 2,
-          margin: 0,
-        }}
-      >
-        {tab === "Analysis" ? <Analysis /> : <MandateSearch />}
-      </Grid>
-    </Container>
+      <Box>
+        <Box>
+          <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+            <Tab sx={{width:'30%', ":focus":{outline: 'none'}}} label="Analysis" {...a11yProps(0)} />
+            <Tab sx={{width:'30%', ":focus":{outline: 'none'}}} label="Mandate Search" {...a11yProps(1)} />
+          </Tabs>
+        </Box>
+        <CustomTabPanel value={value} index={0}>
+          <AnalysisTab/>
+        </CustomTabPanel>
+        <CustomTabPanel value={value} index={1}>
+          <MandateSearchTab/>
+        </CustomTabPanel>
+      </Box>
+   
+    </Box>
   );
 }
 

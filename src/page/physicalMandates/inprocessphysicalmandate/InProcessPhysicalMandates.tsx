@@ -1,18 +1,19 @@
+
 import {  Checkbox, FormControlLabel, Paper,  Switch, Table, TableBody, TableCell, TableContainer, TablePagination, TableRow } from "@mui/material"
 import Box from "@mui/material/Box"
 // import { LocalizationProvider } from "@mui/x-date-pickers";
 // import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
 // import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import React from "react";
-import { Order, UnAssignedMandatesData } from "../../utils/types";
-import { getComparator, stableSort } from "../../utils/tablefunction";
-import { EnhancedTableHead, EnhancedTableToolbar, rows } from "./UnAssignedMandatesHead";
+import { Order, InProcessPhysicalMandateData } from "../../../utils/types";
+import { getComparator, stableSort } from "../../../utils/tablefunction";
+import { EnhancedTableHead, EnhancedTableToolbar, rows } from "./InProcessPhysicalMandateHead";
 
 
-function UnAssignedMandates() {
+export default function InProcessPhysicalMandates() {
 
   const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<keyof UnAssignedMandatesData>('mandateId');
+  const [orderBy, setOrderBy] = React.useState<keyof InProcessPhysicalMandateData>('mandateId');
   const [selected, setSelected] = React.useState<readonly number[]>([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
@@ -20,7 +21,7 @@ function UnAssignedMandates() {
 
   const handleRequestSort = (
     _event: React.MouseEvent<unknown>,
-    property: keyof UnAssignedMandatesData,
+    property: keyof InProcessPhysicalMandateData,
   ) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -141,6 +142,8 @@ function UnAssignedMandates() {
                   <TableCell align="left">{row.reference1}</TableCell>
                   <TableCell align="left">{row.customerName}</TableCell>
                   <TableCell align="left">{row.customerAccountNo}</TableCell>
+                  <TableCell align="left">{row.amount}</TableCell>
+                  <TableCell align="left">{row.amountInWord}</TableCell>
                 </TableRow>
               );
             })}
@@ -174,4 +177,3 @@ function UnAssignedMandates() {
   )
 }
 
-export default UnAssignedMandates

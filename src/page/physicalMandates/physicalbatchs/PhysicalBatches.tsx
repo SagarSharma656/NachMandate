@@ -1,18 +1,24 @@
+
+
+
+
+
+
 import {  Checkbox, FormControlLabel, Paper,  Switch, Table, TableBody, TableCell, TableContainer, TablePagination, TableRow } from "@mui/material"
 import Box from "@mui/material/Box"
 // import { LocalizationProvider } from "@mui/x-date-pickers";
 // import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
 // import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import React from "react";
-import { Order, UnAssignedMandatesData } from "../../utils/types";
-import { getComparator, stableSort } from "../../utils/tablefunction";
-import { EnhancedTableHead, EnhancedTableToolbar, rows } from "./UnAssignedMandatesHead";
+import { Order, PhysicalBatchsData } from "../../../utils/types";
+import { getComparator, stableSort } from "../../../utils/tablefunction";
+import { EnhancedTableHead, EnhancedTableToolbar, rows } from "./PhysicalBatchesHead";
 
 
-function UnAssignedMandates() {
+export default function PhysicalBatches() {
 
   const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<keyof UnAssignedMandatesData>('mandateId');
+  const [orderBy, setOrderBy] = React.useState<keyof PhysicalBatchsData>('fileNo');
   const [selected, setSelected] = React.useState<readonly number[]>([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
@@ -20,7 +26,7 @@ function UnAssignedMandates() {
 
   const handleRequestSort = (
     _event: React.MouseEvent<unknown>,
-    property: keyof UnAssignedMandatesData,
+    property: keyof PhysicalBatchsData,
   ) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -29,7 +35,7 @@ function UnAssignedMandates() {
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelected = rows.map((n) => n.mandateId);
+      const newSelected = rows.map((n) => n.fileNo);
       setSelected(newSelected);
       return;
     }
@@ -105,17 +111,17 @@ function UnAssignedMandates() {
           />
           <TableBody>
             {visibleRows.map((row, index) => {
-              const isItemSelected = isSelected(row.mandateId);
+              const isItemSelected = isSelected(row.fileNo);
               const labelId = `enhanced-table-checkbox-${index}`;
 
               return (
                 <TableRow
                   hover
-                  onClick={(event) => handleClick(event, row.mandateId)}
+                  onClick={(event) => handleClick(event, row.fileNo)}
                   role="checkbox"
                   aria-checked={isItemSelected}
                   tabIndex={-1}
-                  key={row.mandateId}
+                  key={row.fileNo}
                   selected={isItemSelected}
                   sx={{ cursor: 'pointer' }}
                 >
@@ -135,12 +141,14 @@ function UnAssignedMandates() {
                     padding="normal"
                     align="left"
                   >
-                    {row.mandateStatus}
+                    {row.srno}
                   </TableCell>
-                  <TableCell align="left">{row.mandateId}</TableCell>
-                  <TableCell align="left">{row.reference1}</TableCell>
-                  <TableCell align="left">{row.customerName}</TableCell>
-                  <TableCell align="left">{row.customerAccountNo}</TableCell>
+                  <TableCell align="left">{row.fileNo}</TableCell>
+                  <TableCell align="left">{row.totalNoOfRecordsInFile}</TableCell>
+                  <TableCell align="left">{row.createdOn}</TableCell>
+                  <TableCell align="left">{row.createdBy}</TableCell>
+                  <TableCell align="left">{row.download}</TableCell>
+                  <TableCell align="left">{row.action}</TableCell>
                 </TableRow>
               );
             })}
@@ -174,4 +182,3 @@ function UnAssignedMandates() {
   )
 }
 
-export default UnAssignedMandates
