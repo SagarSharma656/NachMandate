@@ -1,75 +1,73 @@
-import React from 'react'
-import { RxCross2 } from "react-icons/rx";
-import { AppBar, Box, Button, Container, FormGroup, Grid, IconButton, Stack, TextField, Toolbar, Typography } from '@mui/material';
-import CloseIcon from "@mui/icons-material/Close";
-import { DisabledByDefault } from '@mui/icons-material';
+import { Box, Button, DialogActions, DialogContent, DialogTitle, Stack, TextField,  Typography } from '@mui/material';
+import { useState } from 'react';
 
 interface IFSCValidationProps{
-    handleCloseAddUser: any
+    handleClose: any
 }
 
 function IFSCValidation(props: IFSCValidationProps) {
-    const {handleCloseAddUser} = props;
+    const {handleClose} = props;
 
+    const fetchAPI = "https://ifsc.razorpay.com/";
+
+    const [IFSCcode, setIFSCcode] = useState();
+    const [bankName, setBankName] = useState<String>("");
+
+
+    function handleIFSCcode(_event: any){
+      setIFSCcode(_event.target.value);
+    }
+
+    async function handleFindBank(){
+      const response = await fetch(`${fetchAPI}${IFSCcode}`);
+      const result = await response.json();
+      setBankName(`${result.BANK}, ${result.BRANCH}`);
+    }
     
 
   return (
+    <Box>
+      <DialogTitle>{"IFSC Validation"}</DialogTitle>
+      <DialogContent>
+        <Stack direction="row" pb={1} pt={0.6} gap={1}>
+          <TextField
+            id="outlined-basic"
+            label="Enter IFSC"
+            type="text"
+            variant="outlined"
+            size="small"
+            fullWidth
+            value={IFSCcode}
+            onChange={handleIFSCcode}
+          />
+          <Typography variant="body1" color="initial" alignSelf='center'>Or</Typography>
+          <TextField
+            id="outlined-basic"
+            label="MICR"
+            type="text"
+            variant="outlined"
+            size="small"
+            fullWidth
+          />
+        </Stack>
+        <TextField
+          
+          value={bankName}
+          id="outlined-basic"
+          label="Bank"
+          type="text"
+          variant="outlined"
+          size="small"
+          fullWidth
+        />
+      </DialogContent>
 
-<React.Fragment>
-      <AppBar sx={{ position: "relative" }}>
-        <Toolbar style={{ background: "rgb(58, 196, 125)" }}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            onClick={handleCloseAddUser}
-            aria-label="close"
-          >
-            <CloseIcon />
-          </IconButton>
-          <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-           IFSC Validation
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Box sx={{width:'50%',mx:'auto', my:2}}>
-        <form action="">
-            <FormGroup>
-                <Grid>
-                    <Stack spacing={2}>
-                        <TextField
-                            id="standard-basic"
-                            type="text"
-                            label="Enter IFSC"
-                            variant="standard"
-                            size="small"
-                            />
-                        <Typography variant='body2' sx={{textAlign: 'center'}}>
-                            Or
-                        </Typography>
-                        <TextField
-                            id="standard-basic"
-                            type="number"
-                            label="MICR"
-                            variant="standard"
-                            size="small"
-                        />
-
-                        <TextField
-                            id="standard-basic"
-                            type="text"
-                            label="Bank"
-                            variant="standard"
-                            size="small"
-                            />
-                        <Button>Search</Button>
-                    </Stack>
-                </Grid>
-            </FormGroup>
-        </form>
-      </Box>
-    </React.Fragment>
-    
-  )
+      <DialogActions>
+        <Button onClick={handleFindBank}>Search</Button>
+        <Button onClick={handleClose}>Close</Button>
+      </DialogActions>
+    </Box>
+  );
 }
 
 export default IFSCValidation

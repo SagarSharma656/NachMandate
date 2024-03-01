@@ -140,288 +140,286 @@ export default function LandingPage(props: LandingPageProps) {
     setOpen(true);
   };
   return (
-    <React.Fragment>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
+    <Box sx={{ display: "flex" }}>
+      <CssBaseline />
 
-        <Header
-          AppBar={AppBar}
-          open={open}
-          handleDrawerOpen={handleDrawerOpen}
-          setIsLogin={setIsLogin}
-        />
+      <Header
+        AppBar={AppBar}
+        open={open}
+        handleDrawerOpen={handleDrawerOpen}
+        setIsLogin={setIsLogin}
+      />
 
-        <LeftDrawer open={open} setOpen={setOpen} />
+      <LeftDrawer open={open} setOpen={setOpen} />
 
-        <Box component="main" sx={{ flexGrow: 1, padding: 0 }}>
-          <DrawerHeader style={{ minHeight: "42px" }} />
-          <Box>
-            <Routes>
-              {/* <Route path='/' element={<MainScreen/>}> */}
-              <Route path="" element={<Dashboard />} />
+      <Box component="main" sx={{ flexGrow: 1, padding: 0 }}>
+        <DrawerHeader style={{ minHeight: "42px" }} />
+        <Box>
+          <Routes>
+            {/* <Route path='/' element={<MainScreen/>}> */}
+            <Route path="" element={<Dashboard />} />
 
-              <Route path="/User/AllUsers" element={<AllUsers />} />
-              <Route path="/Mandates/NACHMandate" element={<NACHMandate />} />
-              <Route
-                path="/Mandates/UnAssignedMandates"
-                element={<UnAssignedMandates />}
-              />
+            <Route path="/User/AllUsers" element={<AllUsers />} />
+            <Route path="/Mandates/NACHMandate" element={<NACHMandate />} />
+            <Route
+              path="/Mandates/UnAssignedMandates"
+              element={<UnAssignedMandates />}
+            />
 
-              <Route
-                path="/PhysicalMandates/InProcessPhysicalMandates"
-                element={<InProcessPhysicalMandates />}
-              />
-              <Route
-                path="/PhysicalMandates/PendingForBatchCreation"
-                element={<PendingForBatchCreation />}
-              />
-              <Route
-                path="/PhysicalMandates/UnapprovedMandates"
-                element={<UnapprovedMandates />}
-              />
-              <Route
-                path="/PhysicalMandates/ApprovedMandates"
-                element={<ApprovedMandates />}
-              />
-              <Route
-                path="/PhysicalMandates/PhysicalBatches"
-                element={<PhysicalBatches />}
-              />
-              <Route
-                path="/PhysicalMandates/SentToBank"
-                element={<SentToBank />}
-              />
-              <Route
-                path="/PhysicalMandates/UMRNReceivedPhysical"
-                element={<UMRNReceivedPhysical />}
-              />
-              <Route
-                path="/PhysicalMandates/RegisteredPhysicalMandates"
-                element={<RegisteredPhysicalMandates />}
-              />
-              <Route
-                path="/PhysicalMandates/RejectedPhysicalMandates"
-                element={<RejectedPhysicalMandates />}
-              />
-              <Route
-                path="/PhysicalMandates/ChangeRequestedMandates"
-                element={<ChangeRequestedMandates />}
-              />
-              <Route
-                path="/PhysicalMandates/HardRejectedMandates"
-                element={<HardRejectedMandates />}
-              />
-              <Route
-                path="/PhysicalMandates/ReInitiatedMandateReport"
-                element={<ReInitiatedMandateReport />}
-              />
+            <Route
+              path="/PhysicalMandates/InProcessPhysicalMandates"
+              element={<InProcessPhysicalMandates />}
+            />
+            <Route
+              path="/PhysicalMandates/PendingForBatchCreation"
+              element={<PendingForBatchCreation />}
+            />
+            <Route
+              path="/PhysicalMandates/UnapprovedMandates"
+              element={<UnapprovedMandates />}
+            />
+            <Route
+              path="/PhysicalMandates/ApprovedMandates"
+              element={<ApprovedMandates />}
+            />
+            <Route
+              path="/PhysicalMandates/PhysicalBatches"
+              element={<PhysicalBatches />}
+            />
+            <Route
+              path="/PhysicalMandates/SentToBank"
+              element={<SentToBank />}
+            />
+            <Route
+              path="/PhysicalMandates/UMRNReceivedPhysical"
+              element={<UMRNReceivedPhysical />}
+            />
+            <Route
+              path="/PhysicalMandates/RegisteredPhysicalMandates"
+              element={<RegisteredPhysicalMandates />}
+            />
+            <Route
+              path="/PhysicalMandates/RejectedPhysicalMandates"
+              element={<RejectedPhysicalMandates />}
+            />
+            <Route
+              path="/PhysicalMandates/ChangeRequestedMandates"
+              element={<ChangeRequestedMandates />}
+            />
+            <Route
+              path="/PhysicalMandates/HardRejectedMandates"
+              element={<HardRejectedMandates />}
+            />
+            <Route
+              path="/PhysicalMandates/ReInitiatedMandateReport"
+              element={<ReInitiatedMandateReport />}
+            />
 
-              <Route
-                path="/EMandates/InProcessEMandates"
-                element={<InProcessEMandates />}
-              />
-              <Route
-                path="/EMandates/RegisteredEMandates"
-                element={<RegisteredEMandates />}
-              />
-              <Route
-                path="/EMandates/RejectedEMandates"
-                element={<RejectedEMandates />}
-              />
+            <Route
+              path="/EMandates/InProcessEMandates"
+              element={<InProcessEMandates />}
+            />
+            <Route
+              path="/EMandates/RegisteredEMandates"
+              element={<RegisteredEMandates />}
+            />
+            <Route
+              path="/EMandates/RejectedEMandates"
+              element={<RejectedEMandates />}
+            />
 
-              <Route
-                path="/AadhaarMandates/InProcessAadhaarMandates"
-                element={<InProcessAadhaarMandates />}
-              />
-              <Route
-                path="/AadhaarMandates/AadhaarBatchCreation"
-                element={<AadhaarBatchCreation />}
-              />
-              <Route
-                path="/AadhaarMandates/ESignedMandates"
-                element={<ESignedMandates />}
-              />
-              <Route
-                path="/AadhaarMandates/AadhaarBatches"
-                element={<AadhaarBatches />}
-              />
-              <Route
-                path="/AadhaarMandates/SentToBankAadhaar"
-                element={<SentToBankAadhaar />}
-              />
-              <Route
-                path="/AadhaarMandates/UMRNReceivedAadhaar"
-                element={<UMRNReceivedAadhaar />}
-              />
-              <Route
-                path="/AadhaarMandates/RegisteredAadhaarMandates"
-                element={<RegisteredAadhaarMandates />}
-              />
-              <Route
-                path="/AadhaarMandates/RejectedAadhaarMandates"
-                element={<RejectedAadhaarMandates />}
-              />
+            <Route
+              path="/AadhaarMandates/InProcessAadhaarMandates"
+              element={<InProcessAadhaarMandates />}
+            />
+            <Route
+              path="/AadhaarMandates/AadhaarBatchCreation"
+              element={<AadhaarBatchCreation />}
+            />
+            <Route
+              path="/AadhaarMandates/ESignedMandates"
+              element={<ESignedMandates />}
+            />
+            <Route
+              path="/AadhaarMandates/AadhaarBatches"
+              element={<AadhaarBatches />}
+            />
+            <Route
+              path="/AadhaarMandates/SentToBankAadhaar"
+              element={<SentToBankAadhaar />}
+            />
+            <Route
+              path="/AadhaarMandates/UMRNReceivedAadhaar"
+              element={<UMRNReceivedAadhaar />}
+            />
+            <Route
+              path="/AadhaarMandates/RegisteredAadhaarMandates"
+              element={<RegisteredAadhaarMandates />}
+            />
+            <Route
+              path="/AadhaarMandates/RejectedAadhaarMandates"
+              element={<RejectedAadhaarMandates />}
+            />
 
-              <Route
-                path="/MandateAnalysis/PhysicalMandateAnalysis"
-                element={<PhysicalMandateAnalysis />}
-              />
-              <Route
-                path="/MandateAnalysis/EMandateAnalysis"
-                element={<EMandateAnalysis />}
-              />
-              <Route
-                path="/MandateAnalysis/AadhaarMandateAnalysis"
-                element={<AadhaarMandateAnalysis />}
-              />
+            <Route
+              path="/MandateAnalysis/PhysicalMandateAnalysis"
+              element={<PhysicalMandateAnalysis />}
+            />
+            <Route
+              path="/MandateAnalysis/EMandateAnalysis"
+              element={<EMandateAnalysis />}
+            />
+            <Route
+              path="/MandateAnalysis/AadhaarMandateAnalysis"
+              element={<AadhaarMandateAnalysis />}
+            />
 
-              <Route
-                path="/AllUMRN/RegisteredUMRN"
-                element={<RegisteredUMRN />}
-              />
-              <Route path="/AllUMRN/RejectedUMRN" element={<RejectedUMRN />} />
-              <Route path="/AllUMRN/OnHoldUMRN" element={<OnHoldUMRN />} />
-              <Route path="/AllUMRN/ExpiredUMRN" element={<ExpiredUMRN />} />
-              <Route path="/AllUMRN/UMRNHistory" element={<UMRNHistory />} />
-              <Route
-                path="/AllUMRN/NPCICancelledUMRN"
-                element={<NPCICancelledUMRN />}
-              />
+            <Route
+              path="/AllUMRN/RegisteredUMRN"
+              element={<RegisteredUMRN />}
+            />
+            <Route path="/AllUMRN/RejectedUMRN" element={<RejectedUMRN />} />
+            <Route path="/AllUMRN/OnHoldUMRN" element={<OnHoldUMRN />} />
+            <Route path="/AllUMRN/ExpiredUMRN" element={<ExpiredUMRN />} />
+            <Route path="/AllUMRN/UMRNHistory" element={<UMRNHistory />} />
+            <Route
+              path="/AllUMRN/NPCICancelledUMRN"
+              element={<NPCICancelledUMRN />}
+            />
 
-              <Route
-                path="/BulkMandates/BulkPhysicalMandates"
-                element={<BulkPhysicalMandates />}
-              />
-              <Route
-                path="/BulkMandates/BulkEMandates"
-                element={<BulkEMandates />}
-              />
-              <Route
-                path="/BulkMandates/BulkAadharMandates"
-                element={<BulkAadharMandates />}
-              />
-              <Route
-                path="/BulkMandates/LegacyUMRNUpload"
-                element={<LegacyUMRNUpload />}
-              />
-              <Route
-                path="/BulkMandates/BulkPhysicalMandate"
-                element={<BulkPhysicalMandate />}
-              />
+            <Route
+              path="/BulkMandates/BulkPhysicalMandates"
+              element={<BulkPhysicalMandates />}
+            />
+            <Route
+              path="/BulkMandates/BulkEMandates"
+              element={<BulkEMandates />}
+            />
+            <Route
+              path="/BulkMandates/BulkAadharMandates"
+              element={<BulkAadharMandates />}
+            />
+            <Route
+              path="/BulkMandates/LegacyUMRNUpload"
+              element={<LegacyUMRNUpload />}
+            />
+            <Route
+              path="/BulkMandates/BulkPhysicalMandate"
+              element={<BulkPhysicalMandate />}
+            />
 
-              <Route
-                path="/DebitPresentations/AllDebitPresentations"
-                element={<AllDebitPresentations />}
-              />
-              <Route
-                path="/DebitPresentations/UnapprovedPresentations"
-                element={<UnapprovedPresentations />}
-              />
-              <Route
-                path="/DebitPresentations/ApprovedPresentations"
-                element={<ApprovedPresentations />}
-              />
-              <Route
-                path="/DebitPresentations/CreatedPresentmentBatches"
-                element={<CreatedPresentmentBatches />}
-              />
+            <Route
+              path="/DebitPresentations/AllDebitPresentations"
+              element={<AllDebitPresentations />}
+            />
+            <Route
+              path="/DebitPresentations/UnapprovedPresentations"
+              element={<UnapprovedPresentations />}
+            />
+            <Route
+              path="/DebitPresentations/ApprovedPresentations"
+              element={<ApprovedPresentations />}
+            />
+            <Route
+              path="/DebitPresentations/CreatedPresentmentBatches"
+              element={<CreatedPresentmentBatches />}
+            />
 
-              <Route
-                path="/ScheduledPresentations/ScheduledForBatchPresentations"
-                element={<ScheduledForBatchPresentations />}
-              />
-              <Route
-                path="/ScheduledPresentations/UnderProcessPresentations"
-                element={<UnderProcessPresentations />}
-              />
-              <Route
-                path="/ScheduledPresentations/CancelledByUserPresentations"
-                element={<CancelledByUserPresentations />}
-              />
-              <Route
-                path="/ScheduledPresentations/PartialStatusReceivedPresentations"
-                element={<PartialStatusReceivedPresentations />}
-              />
-              <Route
-                path="/ScheduledPresentations/CompletedPresentations"
-                element={<CompletedPresentations />}
-              />
+            <Route
+              path="/ScheduledPresentations/ScheduledForBatchPresentations"
+              element={<ScheduledForBatchPresentations />}
+            />
+            <Route
+              path="/ScheduledPresentations/UnderProcessPresentations"
+              element={<UnderProcessPresentations />}
+            />
+            <Route
+              path="/ScheduledPresentations/CancelledByUserPresentations"
+              element={<CancelledByUserPresentations />}
+            />
+            <Route
+              path="/ScheduledPresentations/PartialStatusReceivedPresentations"
+              element={<PartialStatusReceivedPresentations />}
+            />
+            <Route
+              path="/ScheduledPresentations/CompletedPresentations"
+              element={<CompletedPresentations />}
+            />
 
-              <Route
-                path="/DataEntryOperations/NACHDataEntry"
-                element={<NACHDataEntry />}
-              />
-              <Route
-                path="/DataEntryOperations/InitialRejectedImages"
-                element={<InitialRejectedImages />}
-              />
+            <Route
+              path="/DataEntryOperations/NACHDataEntry"
+              element={<NACHDataEntry />}
+            />
+            <Route
+              path="/DataEntryOperations/InitialRejectedImages"
+              element={<InitialRejectedImages />}
+            />
 
-              <Route
-                path="/Report/ConsolidatedReport"
-                element={<ConsolidatedReport />}
-              />
-              <Route path="/Report/BillingReport" element={<BillingReport />} />
+            <Route
+              path="/Report/ConsolidatedReport"
+              element={<ConsolidatedReport />}
+            />
+            <Route path="/Report/BillingReport" element={<BillingReport />} />
 
-              <Route
-                path="/TrainingMaterial/ProcessManual"
-                element={<ProcessManual />}
-              />
-              <Route
-                path="/TrainingMaterial/DemoVideos"
-                element={<DemoVideos />}
-              />
+            <Route
+              path="/TrainingMaterial/ProcessManual"
+              element={<ProcessManual />}
+            />
+            <Route
+              path="/TrainingMaterial/DemoVideos"
+              element={<DemoVideos />}
+            />
 
-              <Route path="/Others/IFSCUpdate" element={<IFSCUpdate />} />
+            <Route path="/Others/IFSCUpdate" element={<IFSCUpdate />} />
 
-              <Route
-                path="/PendingUMRNAndResponse/PendingUMRNAndResponse"
-                element={<PendingUMRNAndResponse />}
-              />
+            <Route
+              path="/PendingUMRNAndResponse/PendingUMRNAndResponse"
+              element={<PendingUMRNAndResponse />}
+            />
 
-              <Route
-                path="/UPIMandate/UPIVerification"
-                element={<UPIVerification />}
-              />
-              <Route path="/UPIMandate/UPIMandate" element={<UPIMandate />} />
-              <Route
-                path="/UPIMandate/UPIRegisteredMandate"
-                element={<UPIRegisteredMandate />}
-              />
-              <Route
-                path="/UPIMandate/UPIRejectedMandate"
-                element={<UPIRejectedMandate />}
-              />
-              <Route
-                path="/UPIMandate/UPIMandateAnalysis"
-                element={<UPIMandateAnalysis />}
-              />
+            <Route
+              path="/UPIMandate/UPIVerification"
+              element={<UPIVerification />}
+            />
+            <Route path="/UPIMandate/UPIMandate" element={<UPIMandate />} />
+            <Route
+              path="/UPIMandate/UPIRegisteredMandate"
+              element={<UPIRegisteredMandate />}
+            />
+            <Route
+              path="/UPIMandate/UPIRejectedMandate"
+              element={<UPIRejectedMandate />}
+            />
+            <Route
+              path="/UPIMandate/UPIMandateAnalysis"
+              element={<UPIMandateAnalysis />}
+            />
 
-              <Route
-                path="/UPIPresentation/UPIPresentation"
-                element={<UPIPresentation />}
-              />
-              <Route
-                path="/UPIPresentation/UPIUnapprovedPresentation"
-                element={<UPIUnapprovedPresentation />}
-              />
-              <Route
-                path="/UPIPresentation/UPIPendingForExecution"
-                element={<UPIPendingForExecution />}
-              />
+            <Route
+              path="/UPIPresentation/UPIPresentation"
+              element={<UPIPresentation />}
+            />
+            <Route
+              path="/UPIPresentation/UPIUnapprovedPresentation"
+              element={<UPIUnapprovedPresentation />}
+            />
+            <Route
+              path="/UPIPresentation/UPIPendingForExecution"
+              element={<UPIPendingForExecution />}
+            />
 
-              <Route
-                path="/UPIBulk/UPIBulkMandateCreation"
-                element={<UPIBulkMandateCreation />}
-              />
-              <Route
-                path="/UPIBulk/BulkUPIVerification"
-                element={<BulkUPIVerification />}
-              />
-              {/* </Route> */}
-            </Routes>
-          </Box>
+            <Route
+              path="/UPIBulk/UPIBulkMandateCreation"
+              element={<UPIBulkMandateCreation />}
+            />
+            <Route
+              path="/UPIBulk/BulkUPIVerification"
+              element={<BulkUPIVerification />}
+            />
+            {/* </Route> */}
+          </Routes>
         </Box>
       </Box>
-    </React.Fragment>
+    </Box>
   );
 }

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  Container,
   Button,
   FormGroup,
   Grid,
@@ -11,10 +10,8 @@ import {
   Tabs,
   Tab,
 } from "@mui/material";
-// import AnalysisTab from "../../components/AnalysisTab";
-// import MandateSearchTab from "../../components/MandateSearchTab";
 import SearchIcon from '@mui/icons-material/Search';
-import { Year } from "../../utils/types";
+import { Bank, Year } from "../../utils/types";
 import React from "react";
 import { CustomTabPanel } from "./CustomTabPanel";
 import AnalysisTab from "../../components/AnalysisTab";
@@ -30,10 +27,7 @@ const btnStyle = {
 };
 
 
-interface Bank {
-  id: string;
-  name: string;
-}
+
 const banks: Bank[] = [
   {
     id: "1",
@@ -118,7 +112,7 @@ function Dashboard() {
  
 
   return (
-    <Container sx={{paddingTop: 1}}>
+    <Box sx={{padding: 1}}>
       <Grid container justifyContent="space-between">
         <Grid item justifyContent="space-between">
           <Stack direction="row" spacing={1}>
@@ -169,21 +163,21 @@ function Dashboard() {
     
 
       <Box>
-      <Box>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab sx={{width:'30%', ":focus":{outline: 'none'}}} label="Analysis" {...a11yProps(0)} />
-          <Tab sx={{width:'30%', ":focus":{outline: 'none'}}} label="Mandate Search" {...a11yProps(1)} />
-        </Tabs>
+        <Box>
+          <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+            <Tab sx={{width:'30%', ":focus":{outline: 'none'}}} label="Analysis" {...a11yProps(0)} />
+            <Tab sx={{width:'30%', ":focus":{outline: 'none'}}} label="Mandate Search" {...a11yProps(1)} />
+          </Tabs>
+        </Box>
+        <CustomTabPanel value={value} index={0}>
+          <AnalysisTab/>
+        </CustomTabPanel>
+        <CustomTabPanel value={value} index={1}>
+          <MandateSearchTab/>
+        </CustomTabPanel>
       </Box>
-      <CustomTabPanel value={value} index={0}>
-        <AnalysisTab/>
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
-        <MandateSearchTab/>
-      </CustomTabPanel>
-    </Box>
    
-    </Container>
+    </Box>
   );
 }
 

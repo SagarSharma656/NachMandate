@@ -26,6 +26,7 @@ export interface VendorUser{
 
 
  export interface MandateData {
+  id: number;
   srno : number;
   mandateStatus: string;
   UMRN: number;
@@ -62,6 +63,7 @@ export interface MandateHeadCell {
 }
 
 export interface UserData {
+  id: number;
   srno: number;
   userType: string;
   userName: string;
@@ -113,11 +115,34 @@ export interface SponserBankCode{
   id: string;
   name: string;
 }
-export interface UnityCode{
+export interface UtilityCode{
   id: string;
   name: string;
 }
-
+export interface Instrument{
+  id: string;
+  name: string
+}
+export interface Frequency{
+  id: string;
+  name: string;
+}
+export interface DebitType{
+  id: string;
+  name: string;
+}
+export interface AccountType{
+  id: string;
+  name: string;
+}
+export interface Mandate{
+  id: string;
+  name: string;
+}
+export interface Bank {
+  id: string;
+  name: string;
+}
 
 export interface MandateFormDataObject {
   language: string;

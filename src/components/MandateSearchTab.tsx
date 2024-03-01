@@ -1,204 +1,392 @@
-import * as React from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
-import { Order } from '../utils/types';
-import { MandateData } from '../utils/types'
-import { EnhancedTableHead, EnhancedTableToolbar, rows } from './MandateSearchTableHead';
-import { getComparator, stableSort } from '../utils/tablefunction';
-import { Box, Grid } from '@mui/material';
+import { MandateData } from "../utils/types";
+import DataTable, { UnionHeadCellType } from "./DataTable";
+
+
+const headCells : UnionHeadCellType[] = [
+  {
+    id: "srno",
+    numeric: true,
+    disablePadding: false,
+    label: "Sr. No.",
+  },
+  {
+    id: "mandateStatus",
+    numeric: true,
+    disablePadding: false,
+    label: "Mandate Status",
+  },
+  {
+    id: "UMRN",
+    numeric: true,
+    disablePadding: false,
+    label: "UMRN",
+  },
+  {
+    id: "id",
+    numeric: true,
+    disablePadding: false,
+    label: "Mandate ID",
+  },
+  {
+    id: "reference1",
+    numeric: true,
+    disablePadding: false,
+    label: "Reference 1",
+  },
+  {
+    id: "customerName",
+    numeric: true,
+    disablePadding: false,
+    label: "Customer Name",
+  },
+  {
+    id: "customerAccountNo",
+    numeric: true,
+    disablePadding: false,
+    label: "Customer Account No.",
+  },
+  {
+    id: "amount",
+    numeric: true,
+    disablePadding: false,
+    label: "Amount",
+  },
+  {
+    id: "amountInWord",
+    numeric: true,
+    disablePadding: false,
+    label: "Amount in words",
+  },
+  {
+    id: "IFSC_MICR",
+    numeric: true,
+    disablePadding: false,
+    label: "IFSC/MICR",
+  },
+  {
+    id: "customerBank",
+    numeric: true,
+    disablePadding: false,
+    label: "Customer Bank",
+  },
+  {
+    id: "sponsorBank",
+    numeric: true,
+    disablePadding: false,
+    label: "Sponsor Bank",
+  },
+  {
+    id: "dateOnMandate",
+    numeric: true,
+    disablePadding: false,
+    label: "Date on Mandate",
+  },
+  {
+    id: "formDate",
+    numeric: true,
+    disablePadding: false,
+    label: "Form Date",
+  },
+  {
+    id: "debitTo",
+    numeric: true,
+    disablePadding: false,
+    label: "Debit to",
+  },
+  {
+    id: "frequency",
+    numeric: true,
+    disablePadding: false,
+    label: "Frequency",
+  },
+  {
+    id: "mandateType",
+    numeric: true,
+    disablePadding: false,
+    label: "Mandate Type",
+  },
+  {
+    id: "rejectResion",
+    numeric: true,
+    disablePadding: false,
+    label: "Reject Reason",
+  },
+  {
+    id: "createOn",
+    numeric: true,
+    disablePadding: false,
+    label: "Create on",
+  },
+  {
+    id: "createBy",
+    numeric: true,
+    disablePadding: false,
+    label: "Create by",
+  },
+  {
+    id: "lastActivityOn",
+    numeric: true,
+    disablePadding: false,
+    label: "Last Activity on",
+  },
+  {
+    id: "product",
+    numeric: true,
+    disablePadding: false,
+    label: "Product",
+  },
+  {
+    id: "branch",
+    numeric: true,
+    disablePadding: false,
+    label: "Branch",
+  },
+  {
+    id: "categoryCode",
+    numeric: true,
+    disablePadding: false,
+    label: "Category Code",
+  },
+  {
+    id: "utilityCode",
+    numeric: true,
+    disablePadding: false,
+    label: "Utility Code",
+  },
+];
+
+// hello this is sagar 
+
+function createData(
+  id: number,
+  srno: number,
+  mandateStatus: string,
+  UMRN: number,
+  mandateId: number,
+  reference1: number,
+  customerName: string,
+  customerAccountNo: number,
+  amount: number,
+  amountInWord: string,
+  IFSC_MICR: string,
+  customerBank: string,
+  sponsorBank: string,
+  dateOnMandate: string,
+  formDate: string,
+  debitTo: string,
+  frequency: string,
+  mandateType: string,
+  rejectResion: string,
+  createOn: string,
+  createBy: string,
+  lastActivityOn: string,
+  product: string,
+  branch: string,
+  categoryCode: string,
+  utilityCode: string
+): MandateData {
+  return {
+    id,
+    srno,
+    mandateStatus,
+    UMRN,
+    mandateId,
+    reference1,
+    customerName,
+    customerAccountNo,
+    amount,
+    amountInWord,
+    IFSC_MICR,
+    customerBank,
+    sponsorBank,
+    dateOnMandate,
+    formDate,
+    debitTo,
+    frequency,
+    mandateType,
+    rejectResion,
+    createOn,
+    createBy,
+    lastActivityOn,
+    product,
+    branch,
+    categoryCode,
+    utilityCode,
+  };
+}
+const rows = [
+  createData(
+    1,
+    1,
+    "status",
+    12345,
+    1,
+    12345,
+    "customer",
+    12345,
+    100,
+    "One hundred",
+    "12333IFSC",
+    "bank",
+    "sponsor bank",
+    "20/02/2005",
+    "20/02/2005",
+    "Saving Account",
+    "frequency",
+    "mandate type",
+    "reject resion",
+    "20/02/2005",
+    "created by",
+    "20/02/2005",
+    "product",
+    "branch",
+    "category code",
+    "utility code"
+  ),
+  createData(
+    2,
+    2,
+    "status",
+    12345,
+    2,
+    12345,
+    "customer",
+    12345,
+    100,
+    "One hundred",
+    "12333IFSC",
+    "bank",
+    "sponsor bank",
+    "20/02/2005",
+    "20/02/2005",
+    "Saving Account",
+    "frequency",
+    "mandate type",
+    "reject resion",
+    "20/02/2005",
+    "created by",
+    "20/02/2005",
+    "product",
+    "branch",
+    "category code",
+    "utility code"
+  ),
+  createData(
+    3,
+    3,
+    "status",
+    12345,
+    3,
+    12345,
+    "customer",
+    12345,
+    100,
+    "One hundred",
+    "12333IFSC",
+    "bank",
+    "sponsor bank",
+    "20/02/2005",
+    "20/02/2005",
+    "Saving Account",
+    "frequency",
+    "mandate type",
+    "reject resion",
+    "20/02/2005",
+    "created by",
+    "20/02/2005",
+    "product",
+    "branch",
+    "category code",
+    "utility code"
+  ),
+  createData(
+    4,
+    4,
+    "status",
+    12345,
+    4,
+    12345,
+    "customer",
+    12345,
+    100,
+    "One hundred",
+    "12333IFSC",
+    "bank",
+    "sponsor bank",
+    "20/02/2005",
+    "20/02/2005",
+    "Saving Account",
+    "frequency",
+    "mandate type",
+    "reject resion",
+    "20/02/2005",
+    "created by",
+    "20/02/2005",
+    "product",
+    "branch",
+    "category code",
+    "utility code"
+  ),
+  createData(
+    5,
+    5,
+    "status",
+    12345,
+    5,
+    12345,
+    "customer",
+    12345,
+    100,
+    "One hundred",
+    "12333IFSC",
+    "bank",
+    "sponsor bank",
+    "20/02/2005",
+    "20/02/2005",
+    "Saving Account",
+    "frequency",
+    "mandate type",
+    "reject resion",
+    "20/02/2005",
+    "created by",
+    "20/02/2005",
+    "product",
+    "branch",
+    "category code",
+    "utility code"
+  ),
+  createData(
+    6,
+    6,
+    "status",
+    12345,
+    6,
+    12345,
+    "customer",
+    12345,
+    100,
+    "One hundred",
+    "12333IFSC",
+    "bank",
+    "sponsor bank",
+    "20/02/2005",
+    "20/02/2005",
+    "Saving Account",
+    "frequency",
+    "mandate type",
+    "reject resion",
+    "20/02/2005",
+    "created by",
+    "20/02/2005",
+    "product",
+    "branch",
+    "category code",
+    "utility code"
+  ),
+];
+
+ console.log(rows);
 
 export default function MandateSearchTab() {
-  const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<keyof MandateData>('srno');
-  const [selected, setSelected] = React.useState<readonly number[]>([]);
-  const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
-  const handleRequestSort = (
-    _event: React.MouseEvent<unknown>,
-    property: keyof MandateData,
-  ) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
-    setOrderBy(property);
-  };
-
-  const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.checked) {
-      const newSelected = rows.map((n) => n.mandateId);
-      setSelected(newSelected);
-      return;
-    }
-    setSelected([]);
-  };
-
-  const handleClick = (_event: React.MouseEvent<unknown>, id: number) => {
-    const selectedIndex = selected.indexOf(id);
-    let newSelected: readonly number[] = [];
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      );
-    }
-    setSelected(newSelected);
-  };
-
-  const handleChangePage = (_event: unknown, newPage: number) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-
-  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDense(event.target.checked);
-  };
-
-  const isSelected = (id: number) => selected.indexOf(id) !== -1;
-
-  // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
-  const visibleRows = React.useMemo(
-    () =>
-      stableSort(rows, getComparator(order, orderBy)).slice(
-        page * rowsPerPage,
-        page * rowsPerPage + rowsPerPage,
-      ),
-    [order, orderBy, page, rowsPerPage],
-  );
-
-  return (
-    <Box>
-      <Grid>
-        <Box sx={{width: '100%'}}>
-        <Paper sx={{width: '100%' ,mb: 2 }}>
-          <EnhancedTableToolbar numSelected={selected.length} />
-          <TableContainer>
-            <Table
-              aria-labelledby="tableTitle"
-              size={dense ? 'small' : 'medium'}
-            >
-              <EnhancedTableHead
-                numSelected={selected.length}
-                order={order}
-                orderBy={orderBy}
-                onSelectAllClick={handleSelectAllClick}
-                onRequestSort={handleRequestSort}
-                rowCount={rows.length}
-              />
-              <TableBody>
-                {visibleRows.map((row, index) => {
-                  const isItemSelected = isSelected(row.mandateId);
-                  const labelId = `enhanced-table-checkbox-${index}`;
-
-                  return (
-                    <TableRow
-                      hover
-                      onClick={(event) => handleClick(event, row.mandateId)}
-                      role="checkbox"
-                      aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      key={row.mandateId}
-                      selected={isItemSelected}
-                      sx={{ cursor: 'pointer' }}
-                    >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          color="primary"
-                          checked={isItemSelected}
-                          inputProps={{
-                            'aria-labelledby': labelId,
-                          }}
-                        />
-                      </TableCell>
-                      <TableCell
-                        component="th"
-                        id={labelId}
-                        scope="row"
-                        padding="none"
-
-                      >
-                        {row.srno}
-                      </TableCell>
-                      <TableCell align="right">{row.mandateStatus}</TableCell>
-                      <TableCell align="right">{row.UMRN}</TableCell>
-                      <TableCell align="right">{row.mandateId}</TableCell>
-                      <TableCell align="right">{row.reference1}</TableCell>
-                      <TableCell align="right">{row.customerName}</TableCell>
-                      <TableCell align="right">{row.customerAccountNo}</TableCell>
-                      <TableCell align="right">{row.amount}</TableCell>
-                      <TableCell align="right">{row.amountInWord}</TableCell>
-                      <TableCell align="right">{row.IFSC_MICR}</TableCell>
-                      <TableCell align="right">{row.customerBank}</TableCell>
-                      <TableCell align="right">{row.sponsorBank}</TableCell>
-                      <TableCell align="right">{row.dateOnMandate}</TableCell>
-                      <TableCell align="right">{row.formDate}</TableCell>
-                      <TableCell align="right">{row.debitTo}</TableCell>
-                      <TableCell align="right">{row.frequency}</TableCell>
-                      <TableCell align="right">{row.mandateType}</TableCell>
-                      <TableCell align="right">{row.rejectResion}</TableCell>
-                      <TableCell align="right">{row.createOn}</TableCell>
-                      <TableCell align="right">{row.createBy}</TableCell>
-                      <TableCell align="right">{row.lastActivityOn}</TableCell>
-                      <TableCell align="right">{row.product}</TableCell>
-                      <TableCell align="right">{row.branch}</TableCell>
-                      <TableCell align="right">{row.categoryCode}</TableCell>
-                      <TableCell align="right">{row.utilityCode}</TableCell>
-                    </TableRow>
-                  );
-                })}
-                {emptyRows > 0 && (
-                  <TableRow
-                    style={{
-                      height: (dense ? 33 : 53) * emptyRows,
-                    }}
-                  >
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 25]}
-            component="div"
-            count={rows.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-                <FormControlLabel
-          control={<Switch checked={dense} onChange={handleChangeDense} />}
-          label="Dense padding"
-        />
-        </Paper>
-
-        </Box>
-      </Grid>
-    </Box>
-
-  
-  );
+   return <DataTable title="Mandates" headCells={headCells} rows={rows} />;
 }

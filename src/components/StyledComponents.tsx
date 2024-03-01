@@ -54,11 +54,12 @@ export const StyledDatePicker = styled(DatePicker, {
   name: "StyledDatePicker",
 })({
   "& .MuiOutlinedInput-root": {
-    height: 28,
+    height: 40,
+    width: 300, 
     fontSize: "15px",
   },
   "& .MuiInputBase-input": {
-    height: 13,
+    height: 20,
   },
 });
 
