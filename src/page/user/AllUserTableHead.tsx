@@ -14,13 +14,14 @@ import IconButton from "@mui/material/IconButton";
 import { visuallyHidden } from "@mui/utils";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import { Dialog, InputBase, Slide, dividerClasses } from "@mui/material";
+import { Dialog, InputBase, Slide } from "@mui/material";
 import AddUser from "./AddUser";
 import { TransitionProps } from "@mui/material/transitions";
 import SearchIcon from "@mui/icons-material/Search";
 
 
 function createData(
+  id: number,
   srno: number,
   userType: string,
   userName: string,
@@ -39,6 +40,7 @@ function createData(
   mobileApp: string
 ): UserData {
   return {
+    id,
     srno,
     userType,
     userName,

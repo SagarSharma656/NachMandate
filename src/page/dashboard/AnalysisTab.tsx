@@ -16,7 +16,7 @@ import {
 import { NavLink } from "react-router-dom";
 import LaunchIcon from "@mui/icons-material/Launch";
 import { useState } from "react";
-import { Month } from "../utils/types";
+import { Month } from "../../utils/types";
 
 const selectStyle = {
   fontSize: "10px",

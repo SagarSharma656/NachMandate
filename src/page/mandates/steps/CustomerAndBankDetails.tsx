@@ -2,7 +2,7 @@ import { Autocomplete, Box, Button, Dialog, DialogActions, DialogContent, Dialog
 import React, { useState } from "react";
 import { AccountType } from "../../../utils/types";
 import { TransitionProps } from "@mui/material/transitions";
-import IFSCValidation from "../../../components/IFSCValidation";
+import IFSCValidation from "../IFSCValidation";
 
 
 const Transition = React.forwardRef(function Transition(

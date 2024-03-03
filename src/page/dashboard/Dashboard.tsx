@@ -14,8 +14,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Bank, Year } from "../../utils/types";
 import React from "react";
 import { CustomTabPanel } from "./CustomTabPanel";
-import AnalysisTab from "../../components/AnalysisTab";
-import MandateSearchTab from "../../components/MandateSearchTab";
+import AnalysisTab from "./AnalysisTab";
+import MandateSearchTab from "./MandateSearchTab";
 
 const btnStyle = {
   fontSize: "10px",
