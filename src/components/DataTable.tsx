@@ -9,7 +9,7 @@ import Paper from "@mui/material/Paper";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
-import { MandateHeadCell, Order, UserData, UserHeadCell } from "../utils/types";
+import { InProcessPhysicalMandateData, InProcessPhysicalMandateHeadCell, MandateHeadCell, Order, PendingForBatchCreationData, PendingForBatchCreationHeadCell, UnAssignedMandatesData, UnAssignedMandatesHeadCell, UnapprovedMandatesData, UnapprovedMandatesHeadCell, UserData, UserHeadCell } from "../utils/types";
 import { MandateData } from "../utils/types";
 import {
   EnhancedTableHead,
@@ -20,8 +20,8 @@ import { Box } from "@mui/material";
 
 
 
-export type UnionHeadCellType = MandateHeadCell | UserHeadCell;
-export type UnionRowType = MandateData | UserData;
+export type UnionHeadCellType = MandateHeadCell | UserHeadCell | UnAssignedMandatesHeadCell | InProcessPhysicalMandateHeadCell | PendingForBatchCreationHeadCell | UnapprovedMandatesHeadCell;
+export type UnionRowType = MandateData | UserData | UnAssignedMandatesData | InProcessPhysicalMandateData | PendingForBatchCreationData | UnapprovedMandatesData;
 
 
 interface DataTableProps {
@@ -175,43 +175,6 @@ export default function DataTable(props: DataTableProps) {
                       })
                     }
 
-                    {/* {Object.values(row).map((value) => (
-                     
-                    ))} */}
-
-                    {/* <TableCell
-                      component="th"
-                      id={labelId}
-                      scope="row"
-                      padding="none"
-                      align="center"
-                    >
-                      {row.srno}
-                    </TableCell>
-                    <TableCell align="center">{row.mandateStatus}</TableCell>
-                    <TableCell align="center">{row.UMRN}</TableCell>
-                    <TableCell align="center">{row.id}</TableCell>
-                    <TableCell align="center">{row.reference1}</TableCell>
-                    <TableCell align="center">{row.customerName}</TableCell>
-                    <TableCell align="center">{row.customerAccountNo}</TableCell>
-                    <TableCell align="center">{row.amount}</TableCell>
-                    <TableCell align="center">{row.amountInWord}</TableCell>
-                    <TableCell align="center">{row.IFSC_MICR}</TableCell>
-                    <TableCell align="center">{row.customerBank}</TableCell>
-                    <TableCell align="center">{row.sponsorBank}</TableCell>
-                    <TableCell align="center">{row.dateOnMandate}</TableCell>
-                    <TableCell align="center">{row.formDate}</TableCell>
-                    <TableCell align="center">{row.debitTo}</TableCell>
-                    <TableCell align="center">{row.frequency}</TableCell>
-                    <TableCell align="center">{row.mandateType}</TableCell>
-                    <TableCell align="center">{row.rejectResion}</TableCell>
-                    <TableCell align="center">{row.createOn}</TableCell>
-                    <TableCell align="center">{row.createBy}</TableCell>
-                    <TableCell align="center">{row.lastActivityOn}</TableCell>
-                    <TableCell align="center">{row.product}</TableCell>
-                    <TableCell align="center">{row.branch}</TableCell>
-                    <TableCell align="center">{row.categoryCode}</TableCell>
-                    <TableCell align="center">{row.utilityCode}</TableCell> */}
                   </TableRow>
                 );
               })}

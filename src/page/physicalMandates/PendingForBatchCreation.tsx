@@ -1,143 +1,144 @@
 import React from 'react'
-import { UnapprovedMandatesData, UnapprovedMandatesHeadCell } from '../../../utils/types';
-import DataTable from '../../../components/DataTable';
+import DataTable from '../../components/DataTable'
+import { PendingForBatchCreationData, PendingForBatchCreationHeadCell } from '../../utils/types';
 
-function UnapprovedMandates() {
+function PendingForBatchCreation() {
 
-  const headCells: UnapprovedMandatesHeadCell[] = [
-    {
-      id: "srno",
-      numeric: true,
-      disablePadding: false,
-      label: "Sr. No.",
-    },
-    {
-      id: "mandateStatus",
-      numeric: true,
-      disablePadding: false,
-      label: "Mandate Status",
-    },
-    {
-      id: "mandateId",
-      numeric: true,
-      disablePadding: false,
-      label: "Mandate ID",
-    },
-    {
-      id: "reference1",
-      numeric: true,
-      disablePadding: false,
-      label: "Reference 1",
-    },
-    {
-      id: "customerName",
-      numeric: true,
-      disablePadding: false,
-      label: "Customer Name",
-    },
-    {
-      id: "customerAccountNo",
-      numeric: true,
-      disablePadding: false,
-      label: "Customer Account No.",
-    },
-    {
-      id: "amount",
-      numeric: true,
-      disablePadding: false,
-      label: "Amount",
-    },
-    {
-      id: "amountInWord",
-      numeric: true,
-      disablePadding: false,
-      label: "Amount In Word",
-    },
-    {
-      id: "IFSC_MICR",
-      numeric: true,
-      disablePadding: false,
-      label: "IFSC/MICR",
-    },
-    {
-      id: "customerBank",
-      numeric: true,
-      disablePadding: false,
-      label: "Customer Bank",
-    },
-    {
-      id: "sponsorBank",
-      numeric: true,
-      disablePadding: false,
-      label: "Sponsor Bank",
-    },
-    {
-      id: "dateOnMandate",
-      numeric: true,
-      disablePadding: false,
-      label: "Date On Mandate",
-    },
-    {
-      id: "formDate",
-      numeric: true,
-      disablePadding: false,
-      label: "Form Date",
-    },
-    {
-      id: "debitTo",
-      numeric: true,
-      disablePadding: false,
-      label: "Debit To",
-    },
-    {
-      id: "debitType",
-      numeric: true,
-      disablePadding: false,
-      label: "Debit Type",
-    },
-    {
-      id: "frequency",
-      numeric: true,
-      disablePadding: false,
-      label: "Frequency",
-    },
-    {
-      id: "createdOn",
-      numeric: true,
-      disablePadding: false,
-      label: "Created On",
-    },
-    {
-      id: "createdBy",
-      numeric: true,
-      disablePadding: false,
-      label: "Created By",
-    },
-    {
-      id: "product",
-      numeric: true,
-      disablePadding: false,
-      label: "Product",
-    },
-    {
-      id: "branch",
-      numeric: true,
-      disablePadding: false,
-      label: "Branch",
-    },
-    {
-      id: "categoryCode",
-      numeric: true,
-      disablePadding: false,
-      label: "Category Code",
-    },
-    {
-      id: "utilityCode",
-      numeric: true,
-      disablePadding: false,
-      label: "Utility Code",
-    },
-  ];
+ const headCells: PendingForBatchCreationHeadCell[] = [
+   {
+     id: "srno",
+     numeric: true,
+     disablePadding: false,
+     label: "Sr. No.",
+   },
+   {
+     id: "mandateStatus",
+     numeric: true,
+     disablePadding: false,
+     label: "Mandate Status",
+   },
+   {
+     id: "mandateId",
+     numeric: true,
+     disablePadding: false,
+     label: "Mandate ID",
+   },
+   {
+     id: "reference1",
+     numeric: true,
+     disablePadding: false,
+     label: "Reference 1",
+   },
+   {
+     id: "customerName",
+     numeric: true,
+     disablePadding: false,
+     label: "Customer Name",
+   },
+   {
+     id: "customerAccountNo",
+     numeric: true,
+     disablePadding: false,
+     label: "Customer Account No.",
+   },
+   {
+     id: "amount",
+     numeric: true,
+     disablePadding: false,
+     label: "Amount",
+   },
+   {
+     id: "amountInWord",
+     numeric: true,
+     disablePadding: false,
+     label: "Amount In Word",
+   },
+   {
+     id: "IFSC_MICR",
+     numeric: true,
+     disablePadding: false,
+     label: "IFSC/MICR",
+   },
+   {
+     id: "customerBank",
+     numeric: true,
+     disablePadding: false,
+     label: "Customer Bank",
+   },
+   {
+     id: "sponsorBank",
+     numeric: true,
+     disablePadding: false,
+     label: "Sponsor Bank",
+   },
+   {
+     id: "dateOnMandate",
+     numeric: true,
+     disablePadding: false,
+     label: "Date On Mandate",
+   },
+   {
+     id: "formDate",
+     numeric: true,
+     disablePadding: false,
+     label: "Form Date",
+   },
+   {
+     id: "debitTo",
+     numeric: true,
+     disablePadding: false,
+     label: "Debit To",
+   },
+   {
+     id: "debitType",
+     numeric: true,
+     disablePadding: false,
+     label: "Debit Type",
+   },
+   {
+     id: "frequency",
+     numeric: true,
+     disablePadding: false,
+     label: "Frequency",
+   },
+   {
+     id: "createdOn",
+     numeric: true,
+     disablePadding: false,
+     label: "Created On",
+   },
+   {
+     id: "createdBy",
+     numeric: true,
+     disablePadding: false,
+     label: "Created By",
+   },
+   {
+     id: "product",
+     numeric: true,
+     disablePadding: false,
+     label: "Product",
+   },
+   {
+     id: "branch",
+     numeric: true,
+     disablePadding: false,
+     label: "Branch",
+   },
+   {
+     id: "categoryCode",
+     numeric: true,
+     disablePadding: false,
+     label: "Category Code",
+   },
+   {
+     id: "utilityCode",
+     numeric: true,
+     disablePadding: false,
+     label: "Utility Code",
+   },
+ ];
+
   function createData(
     id: number,
     srno: number,
@@ -162,7 +163,7 @@ function UnapprovedMandates() {
     branch: string,
     categoryCode: string,
     utilityCode: string
-  ): UnapprovedMandatesData {
+  ): PendingForBatchCreationData {
     return {
       id,
       srno,
@@ -189,6 +190,7 @@ function UnapprovedMandates() {
       utilityCode,
     };
   }
+
   const rows = [
     createData(
       1,
@@ -241,7 +243,7 @@ function UnapprovedMandates() {
       "utility code"
     ),
     createData(
-      3,
+      3, 
       3,
       "Mandate Status",
       3,
@@ -392,9 +394,10 @@ function UnapprovedMandates() {
     ),
   ];
 
-  
-
-  return <DataTable title="Un Approved Mandates" headCells={headCells} rows={rows}/>;
+ 
+  return (
+    <DataTable title="Pending For Batch Creation" headCells={headCells} rows={rows}/>
+  );
 }
 
-export default UnapprovedMandates
+export default PendingForBatchCreation

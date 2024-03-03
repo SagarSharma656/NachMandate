@@ -182,6 +182,8 @@ export interface MandateFormDataObject {
 
 
 export interface UnAssignedMandatesData {
+  id: number;
+  srno: number;
   mandateStatus: string;
   mandateId: number;
   reference1: number;
@@ -196,6 +198,8 @@ export interface UnAssignedMandatesHeadCell {
 }
 
 export interface InProcessPhysicalMandateData {
+  id: number;
+  srno: number;
   mandateStatus: string;
   mandateId: number;
   reference1: number;
@@ -212,6 +216,8 @@ export interface InProcessPhysicalMandateHeadCell {
 }
 
 export interface PendingForBatchCreationData {
+  id: number;
+  srno: number;
   mandateStatus: string;
   mandateId: number;
   reference1: number;
@@ -242,6 +248,8 @@ export interface PendingForBatchCreationHeadCell {
 }
 
 export interface UnapprovedMandatesData {
+  id: number;
+  srno: number;
   mandateStatus: string;
   mandateId: number;
   reference1: number;
