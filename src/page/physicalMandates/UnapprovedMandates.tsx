@@ -1,6 +1,5 @@
-import React from 'react'
-import { UnapprovedMandatesData, UnapprovedMandatesHeadCell } from '../../../utils/types';
-import DataTable from '../../../components/DataTable';
+import { UnapprovedMandatesData, UnapprovedMandatesHeadCell } from '../../utils/types';
+import DataTable from '../../components/DataTable';
 
 function UnapprovedMandates() {
 

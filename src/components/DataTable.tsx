@@ -9,7 +9,7 @@ import Paper from "@mui/material/Paper";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
-import { InProcessPhysicalMandateData, InProcessPhysicalMandateHeadCell, MandateHeadCell, Order, PendingForBatchCreationData, PendingForBatchCreationHeadCell, UnAssignedMandatesData, UnAssignedMandatesHeadCell, UnapprovedMandatesData, UnapprovedMandatesHeadCell, UserData, UserHeadCell } from "../utils/types";
+import { ApprovedMandatesData, ApprovedMandatesHeadCell, InProcessPhysicalMandateData, InProcessPhysicalMandateHeadCell, MandateHeadCell, Order, PendingForBatchCreationData, PendingForBatchCreationHeadCell, PhysicalBatchsData, PhysicalBatchsHeadCell, SentToBankData, SentToBankHeadCell, UnAssignedMandatesData, UnAssignedMandatesHeadCell, UnapprovedMandatesData, UnapprovedMandatesHeadCell, UserData, UserHeadCell } from "../utils/types";
 import { MandateData } from "../utils/types";
 import {
   EnhancedTableHead,
@@ -20,8 +20,8 @@ import { Box } from "@mui/material";
 
 
 
-export type UnionHeadCellType = MandateHeadCell | UserHeadCell | UnAssignedMandatesHeadCell | InProcessPhysicalMandateHeadCell | PendingForBatchCreationHeadCell | UnapprovedMandatesHeadCell;
-export type UnionRowType = MandateData | UserData | UnAssignedMandatesData | InProcessPhysicalMandateData | PendingForBatchCreationData | UnapprovedMandatesData;
+export type UnionHeadCellType = MandateHeadCell | UserHeadCell | UnAssignedMandatesHeadCell | InProcessPhysicalMandateHeadCell | PendingForBatchCreationHeadCell | UnapprovedMandatesHeadCell | ApprovedMandatesHeadCell | PhysicalBatchsHeadCell | SentToBankHeadCell;
+export type UnionRowType = MandateData | UserData | UnAssignedMandatesData | InProcessPhysicalMandateData | PendingForBatchCreationData | UnapprovedMandatesData | ApprovedMandatesData | PhysicalBatchsData | SentToBankData;
 
 
 interface DataTableProps {
@@ -167,6 +167,7 @@ export default function DataTable(props: DataTableProps) {
                               scope="row"
                               padding="none"
                               align="center"
+                              style={{minWidth: 'max-content'}}
                             >
                               {value}
                             </TableCell>

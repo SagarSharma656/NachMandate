@@ -280,6 +280,8 @@ export interface UnapprovedMandatesHeadCell {
 }
 
 export interface ApprovedMandatesData {
+  id: number;
+  srno: number;
   mandateStatus: string;
   mandateId: number;
   reference1: number;
@@ -310,6 +312,7 @@ export interface ApprovedMandatesHeadCell {
 }
 
 export interface PhysicalBatchsData {
+  id: number;
   srno: number;
   fileNo: number;
   totalNoOfRecordsInFile: number;
@@ -326,6 +329,8 @@ export interface PhysicalBatchsHeadCell {
 }
 
 export interface SentToBankData {
+  id: number;
+  srno: number;
   mandateStatus: string;
   mandateId: number;
   fileNo: number;
