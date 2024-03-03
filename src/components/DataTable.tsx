@@ -154,7 +154,7 @@ export default function DataTable(props: DataTableProps) {
                         }}
                       />
                     </TableCell>
-
+ 
                     {
                       Object.entries(row).map(([key, value]) => {
                         if(key === 'id'){
