@@ -1,8 +1,8 @@
-import { MandateData } from "../utils/types";
-import DataTable, { UnionHeadCellType } from "./DataTable";
+import DataTable from "../../components/DataTable";
+import { MandateData, MandateHeadCell } from "../../utils/types";
 
 
-const headCells : UnionHeadCellType[] = [
+const headCells : MandateHeadCell[] = [
   {
     id: "srno",
     numeric: true,
@@ -154,9 +154,6 @@ const headCells : UnionHeadCellType[] = [
     label: "Utility Code",
   },
 ];
-
-
-
 function createData(
   id: number,
   srno: number,
@@ -384,8 +381,6 @@ const rows = [
     "utility code"
   ),
 ];
-
- console.log(rows);
 
 export default function MandateSearchTab() {
    return <DataTable title="Mandates" headCells={headCells} rows={rows} />;
