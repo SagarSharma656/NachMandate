@@ -93,6 +93,7 @@ import UPIPendingForExecution from "../upiPresentation/UPIPendingForExecution";
 
 import UPIBulkMandateCreation from "../upiBulk/UPIBulkMandateCreation";
 import BulkUPIVerification from "../upiBulk/BulkUPIVerification";
+import { AppContext } from "../../App";
 
 const drawerWidth = 240;
 
@@ -133,11 +134,13 @@ interface LandingPageProps {
 
 export default function LandingPage(props: LandingPageProps) {
   const { setIsLogin } = props;
-
+  const appContext = React.useContext(AppContext);
+  const { dispatch } = appContext;
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
+    dispatch({ type: "setCollapseExpanded", value: true })
   };
   return (
     <Box sx={{ display: "flex" }}>

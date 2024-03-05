@@ -1,4 +1,16 @@
+export interface AppState {
+  collapseExpanded: boolean;
+}
 
+export type appStateAction = |{
+  type: 'setCollapseExpanded';
+    value: boolean; 
+}
+
+export type AppContextType = {
+  state: AppState;
+  dispatch: React.Dispatch<appStateAction>;
+};
 
 export interface Year {
     id: string;
