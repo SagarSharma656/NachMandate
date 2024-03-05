@@ -111,8 +111,8 @@ export default function DataTable(props: DataTableProps) {
   );
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Paper sx={{ width: "100%", mb: 2 }}>
+    <Box width={'92vw'} >
+      <Paper sx={{ mb: 2 }}>
         <EnhancedTableToolbar numSelected={selected.length} title={title}/>
         <TableContainer>
           <Table
@@ -147,6 +147,7 @@ export default function DataTable(props: DataTableProps) {
                   >
                     <TableCell padding="checkbox">
                       <Checkbox
+                        size="small"
                         color="primary"
                         checked={isItemSelected}
                         inputProps={{

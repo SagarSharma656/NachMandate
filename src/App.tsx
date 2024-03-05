@@ -6,6 +6,7 @@ import { Box } from '@mui/material';
 
 
 
+
 function App() {
 
   
@@ -13,12 +14,12 @@ function App() {
 
 
   return (
-     <Box>
-      {
-         isLogin? <LandingPage setIsLogin={setIsLogin}/> 
-            :<Login setIsLogin={setIsLogin}/>
-      }
-     </Box>
+      <Box>
+       {
+          isLogin? <LandingPage setIsLogin={setIsLogin}/>
+             :<Login setIsLogin={setIsLogin}/>
+       }
+      </Box>
   );
 }
 
