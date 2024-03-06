@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
@@ -9,6 +9,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import DrawerListItem from "../../components/DrawerListItem";
 import { useState } from "react";
 import { Box } from "@mui/material";
+import { AppContext } from "../../App";
 const drawerWidth = 240;
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -62,6 +63,8 @@ interface LeftDrawerProps {
   setOpen: Dispatch<SetStateAction<boolean>>;
 }
 const LeftDrawer = (props: LeftDrawerProps) => {
+  const appContext = React.useContext(AppContext);
+  const { dispatch } = appContext;
   const linksNameArr = [
     { link: "DashBoard", sublinks: ["DashBoard"] },
     { link: "User", sublinks: ["All Users"] },
@@ -193,6 +196,7 @@ const LeftDrawer = (props: LeftDrawerProps) => {
   const [sublinkBg, setSubLinkBg] = useState<string>("Dashboard");
 
   const handleDrawerClose = () => {
+    dispatch({ type: "setCollapseExpanded", value: false })
     setOpen(false);
   };
 

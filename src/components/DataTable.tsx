@@ -17,6 +17,7 @@ import {
 } from "./TableHead";
 import { getComparator, stableSort } from "../utils/tablefunction";
 import { Box } from "@mui/material";
+import { AppContext } from "../App";
 
 
 
@@ -35,7 +36,9 @@ interface DataTableProps {
 export default function DataTable(props: DataTableProps) {
 
   const { title, headCells, rows } = props;
-
+  const appContext = React.useContext(AppContext);
+  const { state } = appContext;
+  const { collapseExpanded } = state;
   const [order, setOrder] = React.useState<Order>("asc");
   const [orderBy, setOrderBy] = React.useState<keyof UnionRowType>("srno");
   const [selected, setSelected] = React.useState<readonly number[]>([]);
@@ -111,12 +114,13 @@ export default function DataTable(props: DataTableProps) {
   );
 
   return (
-    <Box width={'92vw'} >
-      <Paper sx={{ mb: 2 }}>
-        <EnhancedTableToolbar numSelected={selected.length} title={title}/>
+    <Box sx={{ width: (collapseExpanded ? '83.5vw' : '94.5vw') }}>
+      <Paper >
+        <EnhancedTableToolbar numSelected={selected.length} title={title} />
+
         <TableContainer>
           <Table
-            sx={{ minWidth: 750 }}
+            sx={{ maxWidth: '100vw' }}
             aria-labelledby="tableTitle"
             size={dense ? "small" : "medium"}
           >
@@ -155,20 +159,20 @@ export default function DataTable(props: DataTableProps) {
                         }}
                       />
                     </TableCell>
- 
+
                     {
                       Object.entries(row).map(([key, value]) => {
-                        if(key === 'id'){
-                          return(null);
-                        }else{
-                          return(
+                        if (key === 'id') {
+                          return (null);
+                        } else {
+                          return (
                             <TableCell
                               component="th"
-                              id={labelId} 
+                              id={labelId}
                               scope="row"
                               padding="none"
                               align="center"
-                              style={{minWidth: 'max-content'}}
+                              style={{ minWidth: 'max-content' }}
                             >
                               {value}
                             </TableCell>
