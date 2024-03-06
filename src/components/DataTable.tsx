@@ -148,7 +148,7 @@ export default function DataTable(props: DataTableProps) {
                     <TableCell padding="checkbox">
                       <Checkbox
                         size="small"
-                        color="secondary"
+                        color="primary"
                         checked={isItemSelected}
                         inputProps={{
                           "aria-labelledby": labelId,

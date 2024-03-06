@@ -59,6 +59,7 @@ export function EnhancedTableHead(props: EnhancedTableProps) {
       <TableRow>
         <TableCell padding="checkbox">
           <Checkbox
+            size="small"
             color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
