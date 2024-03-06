@@ -117,6 +117,7 @@ export default function DataTable(props: DataTableProps) {
     <Box sx={{ width: (collapseExpanded ? '83.5vw' : '94.5vw') }}>
       <Paper >
         <EnhancedTableToolbar numSelected={selected.length} title={title} />
+
         <TableContainer>
           <Table
             sx={{ maxWidth: '100vw' }}
@@ -150,6 +151,7 @@ export default function DataTable(props: DataTableProps) {
                   >
                     <TableCell padding="checkbox">
                       <Checkbox
+                        size="small"
                         color="primary"
                         checked={isItemSelected}
                         inputProps={{

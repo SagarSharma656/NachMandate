@@ -14,6 +14,7 @@ export const AppContext = createContext<AppContextType>({
 
 export const queryClient = new QueryClient();
 
+
 function App() {
    const [state, dispatch] = useReducer(appReducer, initialAppState);
    const [isLogin, setIsLogin] = useState(false);
@@ -33,6 +34,7 @@ function App() {
          </Fragment>
       </Box>
    );
+
 }
 
 export default App;
